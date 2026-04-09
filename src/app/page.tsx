@@ -218,15 +218,15 @@ export default function Home() {
               <li className="flex gap-4"><span className="text-black font-bold">01.</span> First come, first served.</li>
               <li className="flex gap-4"><span className="text-black font-bold">02.</span> TAT: 4 – 20 hari kerja per karya.</li>
               <li className="flex gap-4"><span className="text-black font-bold">03.</span> Update progres berkala via DM.</li>
-              <li className="flex gap-4"><span className="text-black font-bold">04.</span> Tidak menerima komisi mendadak/rush.</li>
-              <li className="flex gap-4"><span className="text-black font-bold">05.</span> DP 50% di awal.</li>
-              <li className="flex gap-4"><span className="text-black font-bold">06.</span> Revisi sketsa sepuasnya.</li>
-              <li className="flex gap-4"><span className="text-black font-bold">07.</span> No Refund.</li>
+              <li className="flex gap-4"><span className="text-black font-bold">04.</span> Mohon bersabar! Tidak menerima komisi mendadak/deadline.</li>
+              <li className="flex gap-4"><span className="text-black font-bold">05.</span> DP 50% di awal, , pelunasan setelah sketsa.</li>
+              <li className="flex gap-4"><span className="text-black font-bold">06.</span> Revisi sketsa bebas, setelah sketsa hanya bisa revisi warna.</li>
+              <li className="flex gap-4"><span className="text-black font-bold">07.</span> No Refund! kecuali jika saya tidak bisa melanjutkan karena kondisi tertentu.</li>
               <li className="font-bold text-red-600 bg-red-50 p-5 rounded-xl border-2 border-red-100 italic shadow-inner">
                 DILARANG KERAS menggunakan hasil karya untuk keperluan AI (Artificial Intelligence) dan/atau NFT.
               </li>
               <li className="text-slate-400 italic text-sm border-t border-gray-100 pt-4">
-                * Artist berhak memposting hasil komisi ke portofolio.
+                * Saya selalu memposting hasil commission ke SNS, jadi mohon beri tahu dulu jika tidak ingin dipublikasikan.
               </li>
             </ul>
           </div>
