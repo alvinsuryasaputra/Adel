@@ -167,13 +167,12 @@ export default function Home() {
             <div className="h-1 w-20 bg-black mx-auto"></div>
           </div>
 
-          {/* Sub-Section: Normal Art (Diubah jadi Kotak/Square) */}
+{/* Sub-Section: Normal Art */}
           <div className="space-y-6">
             <h3 className="text-xl font-serif italic font-semibold text-slate-700 border-l-4 border-yellow-400 pl-4">Normal Style</h3>
-            {/* Grid untuk Normal Style - 3 Kolom biar kelihatan sedikit lebih besar dari chibi */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* UPDATE DI SINI: grid-cols-2 md:grid-cols-4 (Disamakan persis dengan Chibi) */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {['sample1.jpg', 'sample2.jpg', 'sample3.jpg'].map((img, index) => (
-                // UPDATE DI SINI: aspect-[3/4] diubah jadi aspect-square
                 <div key={index} className="group relative aspect-square rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
                   <Image 
                     src={`/samples/${img}`} 
