@@ -1,180 +1,177 @@
 'use client';
 import Image from 'next/image';
-import { MessageCircle, Globe, X, ChevronRight } from 'lucide-react';
+import { MessageCircle, Globe, X, ChevronRight, Star } from 'lucide-react';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f5f5f5] text-[#3d405b] font-sans flex justify-center py-20 px-4 scroll-smooth">
-      
-      {/* ANIMASI HIGHLIGHT (CSS Injection) */}
+    <main className="min-h-screen bg-[#f5f4f0] text-[#3d405b] font-sans flex justify-center py-12 px-6">
+
       <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+        .font-serif-display {
+          font-family: 'Playfair Display', serif;
+        }
+
         @keyframes sectionHighlight {
-          0% { 
-            background-color: rgba(253, 224, 71, 0.5); /* Warna kuning highlight */
-            transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(253, 224, 71, 0.3);
-          }
-          50% {
+          0% {
+            background-color: rgba(253, 224, 71, 0.4);
             transform: scale(1.01);
+            box-shadow: 0 0 20px rgba(253, 224, 71, 0.2);
           }
-          100% { 
+          100% {
             background-color: transparent;
             transform: scale(1);
             box-shadow: none;
           }
         }
-
-        /* Trigger animasi ketika ID menjadi target di URL */
         section:target {
           animation: sectionHighlight 2s ease-out;
-          border-radius: 1rem;
+          border-radius: 14px;
         }
+
+        .nav-link:hover .nav-star { color: #1a1a1a; }
+        .nav-link:hover { color: #1a1a1a; padding-left: 4px; }
       `}</style>
 
-      <div className="max-w-3xl w-full space-y-24">
-        
-        {/* SECTION 1: HERO & NAVIGATION */}
-        <section className="flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
-          <div className="flex-shrink-0">
-            <div className="w-40 h-40 rounded-full overflow-hidden relative border-4 border-white shadow-md">
-              <Image 
-                src="/avatar.png" 
-                alt="Adel Avatar" 
-                fill
-                priority
-                className="object-cover"
-              />
-            </div>
+      <div className="max-w-3xl w-full flex flex-col gap-[72px]">
+
+        {/* ── SECTION 1: HERO ── */}
+        <section className="flex flex-col md:flex-row gap-8 items-start">
+
+          {/* Avatar */}
+          <div className="flex-shrink-0 w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-md relative bg-[#e8e6e0]">
+            <Image src="/avatar.png" alt="CIEL avatar" fill className="object-cover" priority />
           </div>
 
-          <div className="flex-1 space-y-4 text-center md:text-left">
+          {/* Bio */}
+          <div className="flex-1 flex flex-col gap-3.5">
             <div>
-              <h1 className="text-4xl font-serif font-bold text-[#2c3e50] tracking-tight leading-tight">
-                CIEL༉ 
+              <h1 className="font-serif-display text-[32px] font-bold text-[#2c3040] leading-tight tracking-tight">
+                CIEL༉
               </h1>
-              <p className="text-base font-normal text-slate-400 font-sans tracking-wide">(@uchvvjin)</p>
+              <p className="text-[13px] text-slate-400 tracking-wide">(@uchvvjin)</p>
             </div>
-            
-            <ul className="space-y-1.5 text-[13px] text-slate-600 font-medium">
-              <li className="flex items-center justify-center md:justify-start gap-2">
-                <ChevronRight size={14} className="text-slate-300" /> ID / EN
+
+            <ul className="flex flex-col gap-1.5">
+              <li className="flex items-center gap-2 text-[13px] text-slate-500 font-medium">
+                <ChevronRight size={12} className="text-slate-300" /> ID / EN
               </li>
-              <li className="flex items-center justify-center md:justify-start gap-2">
-                <ChevronRight size={14} className="text-slate-300" /> GMT +7
+              <li className="flex items-center gap-2 text-[13px] text-slate-500 font-medium">
+                <ChevronRight size={12} className="text-slate-300" /> GMT +7
               </li>
-              <li className="flex items-center justify-center md:justify-start gap-2 font-bold tracking-widest text-green-600 uppercase">
-                <ChevronRight size={14} className="text-green-600" /> CMSN OPEN
+              <li className="flex items-center gap-2 text-[11px] text-green-700 font-black uppercase tracking-widest">
+                <ChevronRight size={12} className="text-green-600" /> CMSN OPEN
               </li>
             </ul>
-            
-            <div className="flex gap-3 pt-3 justify-center md:justify-start">
-              <a href="https://x.com/uchvvjin" target="_blank" className="p-2.5 bg-white rounded-full border border-gray-200 hover:bg-black hover:text-white transition-all shadow-sm">
-                <X size={18} />
+
+            <div className="flex gap-2.5 pt-1">
+              <a href="https://x.com/uchvvjin" target="_blank"
+                className="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white transition-all shadow-sm">
+                <X size={16} />
               </a>
-              <a href="https://vgen.co/uchuujin" target="_blank" className="p-2.5 bg-white rounded-full border border-gray-200 hover:bg-purple-600 hover:text-white transition-all shadow-sm">
-                <Globe size={18} />
+              <a href="https://vgen.co/uchuujin" target="_blank"
+                className="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-purple-600 hover:text-white transition-all shadow-sm">
+                <Globe size={16} />
               </a>
-              <a href="https://wa.me/6282134140287" target="_blank" className="p-2.5 bg-white rounded-full border border-gray-200 hover:bg-green-500 hover:text-white transition-all shadow-sm">
-                <MessageCircle size={18} />
+              <a href="https://wa.me/6282134140287" target="_blank"
+                className="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-[#25d366] hover:text-white transition-all shadow-sm">
+                <MessageCircle size={16} />
               </a>
             </div>
           </div>
 
-          <div className="w-full md:w-60">
-            <div className="border-2 border-black p-2 flex justify-between items-center mb-4 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <span className="text-[10px] uppercase font-black text-black px-1 tracking-[0.2em]">Navigation</span>
-              <span className="border-l-2 border-black pl-2 pr-1 text-xs font-bold">≡</span>
+          {/* Nav Box */}
+          <div className="w-full md:w-56 flex-shrink-0">
+            <div className="border-2 border-black bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] px-3 py-2 flex justify-between items-center mb-3">
+              <span className="text-[9px] font-black uppercase tracking-[0.2em] text-black">Navigation</span>
+              <span className="text-sm font-bold border-l-2 border-black pl-2">≡</span>
             </div>
-            <ul className="space-y-2 text-[13px] font-bold">
-              <li className="border-b border-gray-300 pb-1.5 hover:pl-2 transition-all group">
-                <a href="#pricelist" className="flex items-center gap-2 w-full text-slate-500 hover:text-black">
-                  <span className="text-slate-300 group-hover:text-black transition-colors">★</span> Pricelist & Samples
-                </a>
-              </li>
-              <li className="border-b border-gray-300 pb-1.5 hover:pl-2 transition-all group">
-                <a href="#capability" className="flex items-center gap-2 w-full text-slate-500 hover:text-black">
-                  <span className="text-slate-300 group-hover:text-black transition-colors">★</span> Capability
-                </a>
-              </li>
-              <li className="border-b border-gray-300 pb-1.5 hover:pl-2 transition-all group">
-                <a href="#terms" className="flex items-center gap-2 w-full text-slate-500 hover:text-black">
-                  <span className="text-slate-300 group-hover:text-black transition-colors">★</span> Terms of Service
-                </a>
-              </li>
+            <ul className="flex flex-col gap-0 text-[12px] font-bold">
+              {[
+                { href: '#pricelist', label: 'Pricelist & Samples' },
+                { href: '#capability', label: 'Capability' },
+                { href: '#terms', label: 'Terms of Service' },
+              ].map((item) => (
+                <li key={item.href} className="border-b border-gray-200 pb-2 mb-2">
+                  <a href={item.href}
+                    className="nav-link flex items-center gap-2 text-slate-400 transition-all duration-150">
+                    <Star size={11} className="nav-star text-slate-300 transition-colors" />
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </section>
 
-        {/* SECTION 2: PRICELIST */}
-        <section className="space-y-16 pt-10 transition-all duration-500 origin-center p-4" id="pricelist">
-          <div className="space-y-14">
-            <div className="w-full">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-black">
-                    <th className="pb-4 font-serif font-bold text-2xl w-1/2 text-center uppercase tracking-tight">Normal</th>
-                    <th className="pb-4 font-serif font-bold text-2xl w-1/2 text-center uppercase tracking-tight">Price (IDR)</th>
-                  </tr>
-                </thead>
-                <tbody className="text-slate-600">
-                  <tr className="border-b border-gray-200">
-                    <td className="py-5 italic text-center text-base">Headshot</td>
-                    <td className="py-5 font-bold text-center text-base text-black font-mono">65.000</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="py-5 italic text-center text-base">Bust up</td>
-                    <td className="py-5 font-bold text-center text-base text-black font-mono">80.000</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            
-            <div className="w-full">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-black">
-                    <th className="pb-4 font-serif font-bold text-2xl w-1/2 text-center uppercase tracking-tight">Chibi</th>
-                    <th className="pb-4 font-serif font-bold text-2xl w-1/2 text-center uppercase tracking-tight">Price (IDR)</th>
-                  </tr>
-                </thead>
-                <tbody className="text-slate-600">
-                  <tr className="border-b border-gray-200">
-                    <td className="py-5 italic text-center text-base">Halfbody</td>
-                    <td className="py-5 font-bold text-center text-base text-black font-mono">50.000</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="py-5 italic text-center text-base">Fullbody</td>
-                    <td className="py-5 font-bold text-center text-base text-black font-mono">75.000</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="py-5 italic text-center text-base">Skeb Emotes (x4)</td>
-                    <td className="py-5 font-bold text-center text-base text-black font-mono">80.000</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        {/* ── SECTION 2: PRICELIST ── */}
+        <section id="pricelist" className="flex flex-col gap-14 p-4 transition-all duration-500">
+
+          {/* Normal */}
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr className="border-b-2 border-black">
+                <th className="font-serif-display text-[22px] font-bold text-center uppercase tracking-tight pb-4 w-1/2">Normal</th>
+                <th className="font-serif-display text-[22px] font-bold text-center uppercase tracking-tight pb-4 w-1/2">Price (IDR)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { type: 'Headshot', price: '65.000' },
+                { type: 'Bust up', price: '80.000' },
+              ].map((row) => (
+                <tr key={row.type} className="border-b border-gray-200">
+                  <td className="py-5 italic text-center text-[15px] text-slate-500">{row.type}</td>
+                  <td className="py-5 font-bold text-center text-[15px] text-black font-mono">{row.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* Chibi */}
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr className="border-b-2 border-black">
+                <th className="font-serif-display text-[22px] font-bold text-center uppercase tracking-tight pb-4 w-1/2">Chibi</th>
+                <th className="font-serif-display text-[22px] font-bold text-center uppercase tracking-tight pb-4 w-1/2">Price (IDR)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { type: 'Halfbody', price: '50.000' },
+                { type: 'Fullbody', price: '75.000' },
+                { type: 'Skeb Emotes (×4)', price: '80.000' },
+              ].map((row) => (
+                <tr key={row.type} className="border-b border-gray-200">
+                  <td className="py-5 italic text-center text-[15px] text-slate-500">{row.type}</td>
+                  <td className="py-5 font-bold text-center text-[15px] text-black font-mono">{row.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
 
-{/* SECTION: ART SAMPLES */}
-        <section className="space-y-12 pt-10 p-4 transition-all duration-500" id="samples">
-          <div className="text-center space-y-2">
-            <h2 className="text-3xl font-serif font-bold text-[#2c3e50] tracking-tight">Art Samples</h2>
-            <div className="h-1 w-20 bg-black mx-auto"></div>
+        {/* ── SECTION 3: ART SAMPLES ── */}
+        <section id="samples" className="flex flex-col gap-8 p-4 transition-all duration-500">
+          <div>
+            <h2 className="font-serif-display text-[28px] font-bold text-[#2c3040] tracking-tight">Art Samples</h2>
+            <div className="w-16 h-[3px] bg-black mt-2" />
           </div>
 
-          {/* Sub-Section: Normal Art (Bebas Ukuran ala Pinterest) */}
-          <div className="space-y-6">
-            <h3 className="text-xl font-serif italic font-semibold text-slate-700 border-l-4 border-yellow-400 pl-4">Normal Style</h3>
-            {/* Pakai CSS Columns (columns-2 untuk HP, columns-4 untuk Laptop) */}
-            <div className="columns-2 md:columns-4 gap-4 space-y-4">
-              {['sample1.jpg', 'sample2.jpg', 'sample3.jpg'].map((img, index) => (
-                <div key={index} className="group relative rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all break-inside-avoid mb-4">
-                  <Image 
-                    src={`/samples/${img}`} 
-                    alt={`Normal Sample ${index + 1}`}
-                    width={1000} // Angka batas resolusi untuk Next.js
-                    height={1000} // Angka batas resolusi untuk Next.js
+          {/* Normal Style */}
+          <div>
+            <h3 className="font-serif-display text-[17px] italic font-semibold text-slate-600 border-l-4 border-yellow-400 pl-4 mb-4">
+              Normal Style
+            </h3>
+            <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
+              {['sample1.jpg', 'sample2.jpg', 'sample3.jpg'].map((img, i) => (
+                <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
+                  <Image
+                    src={`/samples/${img}`}
+                    alt={`Normal sample ${i + 1}`}
+                    width={1000}
+                    height={1000}
                     className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -182,18 +179,19 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Sub-Section: Chibi Art (Bebas Ukuran ala Pinterest) */}
-          <div className="space-y-6">
-            <h3 className="text-xl font-serif italic font-semibold text-slate-700 border-l-4 border-purple-400 pl-4">Chibi Style</h3>
-            {/* Pakai CSS Columns (columns-2 untuk HP, columns-4 untuk Laptop) */}
-            <div className="columns-2 md:columns-4 gap-4 space-y-4">
-              {['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'].map((img, index) => (
-                <div key={index} className="group relative rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all break-inside-avoid mb-4">
-                  <Image 
-                    src={`/samples/${img}`} 
-                    alt={`Chibi Sample ${index + 1}`}
-                    width={1000} 
-                    height={1000} 
+          {/* Chibi Style */}
+          <div>
+            <h3 className="font-serif-display text-[17px] italic font-semibold text-slate-600 border-l-4 border-purple-400 pl-4 mb-4">
+              Chibi Style
+            </h3>
+            <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
+              {['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'].map((img, i) => (
+                <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
+                  <Image
+                    src={`/samples/${img}`}
+                    alt={`Chibi sample ${i + 1}`}
+                    width={1000}
+                    height={1000}
                     className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -202,99 +200,106 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION 3: ADDITIONAL CHARGES */}
-        <section className="pt-10 p-4 transition-all duration-500" id="additional">
-          <table className="w-full text-sm border-collapse">
+        {/* ── SECTION 4: ADDITIONAL CHARGES ── */}
+        <section id="additional" className="p-4 transition-all duration-500">
+          <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="border-b-2 border-black">
-                <th className="pb-4 font-serif font-bold text-xl w-1/2 text-center">Additional charges</th>
-                <th className="pb-4 font-serif font-bold text-xl w-1/2 text-center">Charge (IDR)</th>
+                <th className="font-serif-display text-[18px] font-bold text-center pb-4 w-1/2">Additional charges</th>
+                <th className="font-serif-display text-[18px] font-bold text-center pb-4 w-1/2">Charge (IDR)</th>
               </tr>
             </thead>
-            <tbody className="text-slate-500 italic">
-              <tr className="border-b border-gray-200 text-center text-sm">
-                <td className="py-4">Props / Complex Design</td>
-                <td className="py-4 font-bold text-black">+5k - 25k/ea</td>
-              </tr>
-              <tr className="border-b border-gray-200 text-center text-sm">
-                <td className="py-4">Private Fee</td>
-                <td className="py-4 font-bold text-black">+75%</td>
-              </tr>
-              <tr className="border-b border-gray-200 text-center text-sm">
-                <td className="py-4">Additional Character</td>
-                <td className="py-4 font-bold text-black">+100%/ea</td>
-              </tr>
-              <tr className="border-b border-gray-200 text-center text-sm">
-                <td className="py-4">Commercial Use</td>
-                <td className="py-4 font-bold text-black">+120%</td>
-              </tr>
+            <tbody>
+              {[
+                { label: 'Props / Complex Design', charge: '+5k – 25k/ea' },
+                { label: 'Private Fee', charge: '+75%' },
+                { label: 'Additional Character', charge: '+100%/ea' },
+                { label: 'Commercial Use', charge: '+120%' },
+              ].map((row) => (
+                <tr key={row.label} className="border-b border-gray-200 text-center">
+                  <td className="py-4 italic text-slate-500 text-[14px]">{row.label}</td>
+                  <td className="py-4 font-bold text-black text-[14px]">{row.charge}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </section>
 
-        {/* SECTION 4: CAPABILITY */}
-        <section className="space-y-8 pt-10 border-t-2 border-gray-200 p-4 transition-all duration-500" id="capability">
-          <table className="w-full text-sm border-collapse">
+        {/* ── SECTION 5: CAPABILITY ── */}
+        <section id="capability" className="p-4 border-t-2 border-gray-200 transition-all duration-500">
+          <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="border-b-2 border-black">
-                <th className="pb-4 font-serif font-bold text-xl text-green-700 w-1/2 text-center uppercase tracking-widest">Can</th>
-                <th className="pb-4 font-serif font-bold text-xl text-red-700 w-1/2 text-center uppercase tracking-widest">Not</th>
+                <th className="font-serif-display text-[18px] font-bold text-green-700 text-center uppercase tracking-widest pb-4 w-1/2">Can</th>
+                <th className="font-serif-display text-[18px] font-bold text-red-700 text-center uppercase tracking-widest pb-4 w-1/2">Cannot</th>
               </tr>
             </thead>
-            <tbody className="text-slate-600 italic text-center text-base">
-              <tr className="border-b border-gray-200"><td className="py-4">Female Characters</td><td className="py-4">Extreme Muscle</td></tr>
-              <tr className="border-b border-gray-200"><td className="py-4">Original Characters (OC)</td><td className="py-4">Elderly / Old People</td></tr>
-              <tr className="border-b border-gray-200"><td className="py-4">Fanart</td><td className="py-4">Mecha / Robots</td></tr>
-              <tr className="border-b border-gray-200"><td className="py-4">Kemonomimi</td><td className="py-4">Full Furry</td></tr>
-              <tr className="border-b border-gray-200"><td className="py-4">Side Profiles</td><td className="py-4">Heavy NSFW</td></tr>
-              <tr className="border-b border-gray-200"><td className="py-4">Male (Ask first)</td><td className="py-4">Realism</td></tr>
+            <tbody>
+              {[
+                ['Female Characters', 'Extreme Muscle'],
+                ['Original Characters (OC)', 'Elderly / Old People'],
+                ['Fanart', 'Mecha / Robots'],
+                ['Kemonomimi', 'Full Furry'],
+                ['Side Profiles', 'Heavy NSFW'],
+                ['Male (Ask first)', 'Realism'],
+              ].map(([can, cant], i) => (
+                <tr key={i} className="border-b border-gray-200">
+                  <td className="py-4 italic text-center text-[15px] text-slate-500">{can}</td>
+                  <td className="py-4 italic text-center text-[15px] text-slate-500">{cant}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </section>
 
-        {/* SECTION 5: TERMS */}
-        <section className="space-y-8 pt-10 border-t-2 border-gray-200 p-4 transition-all duration-500" id="terms">
-          <h2 className="text-3xl font-serif font-bold text-[#2c3e50] text-center md:text-left tracking-tight">Terms of Service</h2>
+        {/* ── SECTION 6: TERMS OF SERVICE ── */}
+        <section id="terms" className="flex flex-col gap-6 p-4 border-t-2 border-gray-200 transition-all duration-500">
+          <h2 className="font-serif-display text-[28px] font-bold text-[#2c3040] tracking-tight">Terms of Service</h2>
           <div className="bg-white p-8 border border-gray-200 rounded-2xl shadow-sm">
-            <ul className="text-[15px] text-slate-600 space-y-5 leading-relaxed">
-              <li className="flex gap-4"><span className="text-black font-bold">01.</span> First come, first served.</li>
-              <li className="flex gap-4"><span className="text-black font-bold">02.</span> TAT: 4 – 20 hari kerja per karya.</li>
-              <li className="flex gap-4"><span className="text-black font-bold">03.</span> Update progres berkala via DM.</li>
-              <li className="flex gap-4"><span className="text-black font-bold">04.</span> Mohon bersabar! Tidak menerima komisi mendadak/deadline.</li>
-              <li className="flex gap-4"><span className="text-black font-bold">05.</span> DP 50% di awal, pelunasan setelah sketsa.</li>
-              <li className="flex gap-4"><span className="text-black font-bold">06.</span> Revisi sketsa bebas, setelah sketsa hanya bisa revisi warna.</li>
-              <li className="flex gap-4"><span className="text-black font-bold">07.</span> No Refund! kecuali jika saya tidak bisa melanjutkan karena kondisi tertentu.</li>
-              <li className="font-bold text-red-600 bg-red-50 p-5 rounded-xl border-2 border-red-100 italic shadow-inner">
-                DILARANG KERAS menggunakan hasil karya untuk keperluan AI (Artificial Intelligence) dan/atau NFT.
+            <ul className="flex flex-col gap-5 text-[14px] text-slate-500 leading-relaxed">
+              <li className="flex gap-4"><span className="font-bold text-black shrink-0">01.</span> First come, first served.</li>
+              <li className="flex gap-4"><span className="font-bold text-black shrink-0">02.</span> TAT: 4 – 20 hari kerja per karya.</li>
+              <li className="flex gap-4"><span className="font-bold text-black shrink-0">03.</span> Update progres berkala via DM.</li>
+              <li className="flex gap-4"><span className="font-bold text-black shrink-0">04.</span> Mohon bersabar! Tidak menerima komisi mendadak/deadline.</li>
+              <li className="flex gap-4"><span className="font-bold text-black shrink-0">05.</span> DP 50% di awal, pelunasan setelah sketsa.</li>
+              <li className="flex gap-4"><span className="font-bold text-black shrink-0">06.</span> Revisi sketsa bebas, setelah sketsa hanya bisa revisi warna.</li>
+              <li className="flex gap-4"><span className="font-bold text-black shrink-0">07.</span> No Refund! kecuali jika saya tidak bisa melanjutkan karena kondisi tertentu.</li>
+              <li>
+                <p className="font-bold text-red-700 bg-red-50 border-2 border-red-100 rounded-xl px-5 py-4 italic text-[13px] leading-relaxed">
+                  DILARANG KERAS menggunakan hasil karya untuk keperluan AI (Artificial Intelligence) dan/atau NFT.
+                </p>
               </li>
-              <li className="text-slate-400 italic text-sm border-t border-gray-100 pt-4">
+              <li className="text-slate-400 italic text-[12px] border-t border-gray-100 pt-4">
                 * Saya selalu memposting hasil commission ke SNS, jadi mohon beri tahu dulu jika tidak ingin dipublikasikan.
               </li>
             </ul>
           </div>
         </section>
 
-        {/* FOOTER */}
-        <section className="pt-24 pb-12 flex flex-col items-center gap-10 border-t-2 border-gray-200">
-          <div className="text-center space-y-3">
-            <h3 className="font-serif italic text-3xl text-[#2c3e50]">Ready to order?</h3>
-            <p className="text-slate-400 font-sans tracking-widest text-xs uppercase">Choose your preferred platform</p>
+        {/* ── FOOTER ── */}
+        <section className="flex flex-col items-center gap-8 pt-8 pb-12 border-t-2 border-gray-200">
+          <div className="text-center flex flex-col items-center gap-2">
+            <h3 className="font-serif-display italic text-[28px] text-[#2c3040]">Ready to order?</h3>
+            <p className="text-slate-400 text-[11px] uppercase tracking-[0.2em]">Choose your preferred platform</p>
           </div>
-          <div className="flex flex-col md:flex-row justify-center gap-5 w-full max-w-xl">
-            <a href="https://wa.me/6282134140287" target="_blank" className="flex-1 flex items-center justify-center gap-3 bg-[#25D366] text-white px-10 py-5 rounded-2xl font-black text-lg hover:brightness-110 hover:-translate-y-1 transition-all shadow-[0_8px_0_0_#16a34a] active:translate-y-0 active:shadow-none">
-              <MessageCircle size={24} /> WhatsApp
+
+          <div className="flex flex-col md:flex-row gap-4 w-full max-w-md">
+            <a href="https://wa.me/6282134140287" target="_blank"
+              className="flex-1 flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 py-5 rounded-2xl font-black text-[15px] shadow-[0_6px_0_0_#16a34a] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
+              <MessageCircle size={22} /> WhatsApp
             </a>
-            <a href="https://vgen.co/uchuujin" target="_blank" className="flex-1 flex items-center justify-center gap-3 bg-[#7C3AED] text-white px-10 py-5 rounded-2xl font-black text-lg hover:brightness-110 hover:-translate-y-1 transition-all shadow-[0_8px_0_0_#5b21b6] active:translate-y-0 active:shadow-none">
-              <Globe size={24} /> VGen
+            <a href="https://vgen.co/uchuujin" target="_blank"
+              className="flex-1 flex items-center justify-center gap-3 bg-[#7C3AED] text-white px-8 py-5 rounded-2xl font-black text-[15px] shadow-[0_6px_0_0_#5b21b6] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
+              <Globe size={22} /> VGen
             </a>
           </div>
-          <div className="text-center pt-10">
-            <p className="text-[10px] text-gray-300 font-mono uppercase tracking-[0.3em]">
-              Developed by Alvin <br/> 
-              <span className="opacity-40">♡</span>
-            </p>
-          </div>
+
+          <p className="text-[10px] text-gray-300 font-mono uppercase tracking-[0.3em] text-center leading-loose">
+            Developed by Alvin<br />
+            <span className="opacity-40">♡</span>
+          </p>
         </section>
+
       </div>
     </main>
   );
