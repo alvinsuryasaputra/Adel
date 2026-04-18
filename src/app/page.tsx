@@ -4,20 +4,18 @@ import Image from 'next/image';
 import { MessageCircle, Globe, X, ChevronRight, Star } from 'lucide-react';
 
 export default function Home() {
-  // State untuk melacak menu apa yang sedang aktif (home = tidak ada yang terbuka)
   const [activeView, setActiveView] = useState('home');
 
-  // Fungsi untuk mengganti tampilan
   const toggleView = (view: string) => {
     if (activeView === view) {
-      setActiveView('home'); // Tutup jika diklik lagi
+      setActiveView('home'); 
     } else {
-      setActiveView(view); // Buka menu yang diklik
+      setActiveView(view); 
     }
   };
 
   return (
-    <main className="min-h-screen bg-[#f5f4f0] text-[#3d405b] font-sans flex justify-center py-10 md:py-12 px-4 md:px-6">
+    <main className="min-h-[100dvh] bg-[#f5f4f0] text-[#3d405b] font-sans flex justify-center py-8 px-4 md:py-12 md:px-6">
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
@@ -26,7 +24,6 @@ export default function Home() {
           font-family: 'Playfair Display', serif;
         }
 
-        /* Animasi Transisi ala Aplikasi (Swipe Kiri) */
         @keyframes fadeInSlide {
           from { 
             opacity: 0; 
@@ -44,19 +41,16 @@ export default function Home() {
         .nav-button:hover .nav-star { color: #1a1a1a; }
       `}</style>
 
-      <div className="max-w-3xl w-full flex flex-col gap-8 md:gap-10">
+      <div className="m-auto max-w-3xl w-full flex flex-col gap-8 md:gap-10">
 
         {/* ── SECTION 1: HERO (SELALU MUNCUL) ── */}
         <section className="flex flex-row justify-between items-start gap-2 sm:gap-4 md:gap-8 w-full">
 
-          {/* KIRI: Avatar & Bio */}
           <div className="flex flex-row gap-2.5 sm:gap-4 md:gap-8 flex-1 min-w-0">
-            {/* Avatar */}
             <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 rounded-full overflow-hidden border-2 md:border-4 border-white shadow-sm md:shadow-md relative bg-[#e8e6e0]">
               <Image src="/avatar.png" alt="CIEL avatar" fill className="object-cover" priority />
             </div>
 
-            {/* Bio */}
             <div className="flex-1 flex flex-col gap-1.5 md:gap-3.5 min-w-0">
               <div>
                 <h1 className="font-serif-display text-[18px] sm:text-2xl md:text-[32px] font-bold text-[#2c3040] leading-none tracking-tight truncate">
@@ -94,7 +88,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* KANAN: Nav Box Interaktif */}
           <div className="w-[125px] sm:w-[140px] md:w-56 flex-shrink-0">
             <div className="border border-black bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:border-2 md:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] px-1.5 md:px-3 py-1 md:py-2 flex justify-between items-center mb-2 md:mb-3">
               <span className="text-[6.5px] sm:text-[7px] md:text-[9px] font-black uppercase tracking-tight md:tracking-[0.2em] text-black truncate">Navigation</span>
@@ -124,16 +117,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── AREA KONTEN DINAMIS (MUNCUL SESUAI PILIHAN NAVIGASI) ── */}
+        {/* ── AREA KONTEN DINAMIS ── */}
         {activeView !== 'home' && (
           <div className="animate-view flex flex-col gap-8 md:gap-12 pt-4 md:pt-6 border-t-2 border-dashed border-gray-200">
             
             {/* VIEW 1: PRICELIST & SAMPLES */}
             {activeView === 'pricelist' && (
               <div className="flex flex-col gap-10 md:gap-14">
-                {/* Tabel Harga */}
                 <div className="flex flex-col gap-8">
-                  {/* Normal */}
                   <table className="w-full border-collapse text-sm">
                     <thead>
                       <tr className="border-b-2 border-black">
@@ -154,7 +145,6 @@ export default function Home() {
                     </tbody>
                   </table>
 
-                  {/* Chibi */}
                   <table className="w-full border-collapse text-sm">
                     <thead>
                       <tr className="border-b-2 border-black">
@@ -177,7 +167,6 @@ export default function Home() {
                   </table>
                 </div>
 
-                {/* Additional Charges */}
                 <div>
                   <table className="w-full border-collapse text-sm">
                     <thead>
@@ -202,14 +191,12 @@ export default function Home() {
                   </table>
                 </div>
 
-                {/* Art Samples */}
                 <div className="flex flex-col gap-8">
                   <div className="text-center md:text-left">
                     <h2 className="font-serif-display text-2xl md:text-[28px] font-bold text-[#2c3040] tracking-tight">Art Samples</h2>
                     <div className="w-16 h-[3px] bg-black mt-2 mx-auto md:mx-0" />
                   </div>
 
-                  {/* Normal Style */}
                   <div>
                     <h3 className="font-serif-display text-[16px] md:text-[17px] italic font-semibold text-slate-600 border-l-4 border-yellow-400 pl-4 mb-4">
                       Normal Style
@@ -229,7 +216,6 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Chibi Style */}
                   <div>
                     <h3 className="font-serif-display text-[16px] md:text-[17px] italic font-semibold text-slate-600 border-l-4 border-purple-400 pl-4 mb-4">
                       Chibi Style
@@ -307,7 +293,6 @@ export default function Home() {
               </div>
             )}
 
-            {/* Tombol Tutup / Kembali Ringan */}
             <button 
               onClick={() => setActiveView('home')}
               className="mt-4 mx-auto md:mx-0 w-fit text-[11px] md:text-sm font-bold text-slate-400 hover:text-black uppercase tracking-widest border-b border-transparent hover:border-black transition-all"
@@ -320,7 +305,6 @@ export default function Home() {
         {/* ── FOOTER / TOMBOL ORDER (SELALU MUNCUL DI BAWAH) ── */}
         <section className={`flex flex-col items-center gap-6 md:gap-8 transition-all duration-500 ${activeView === 'home' ? 'pt-2' : 'pt-8 border-t-2 border-gray-200'}`}>
           
-          {/* Sembunyikan teks "Ready to order" jika di mode home biar lebih estetik dan mirip linktree */}
           {activeView !== 'home' && (
             <div className="text-center flex flex-col items-center gap-2">
               <h3 className="font-serif-display italic text-2xl md:text-[28px] text-[#2c3040]">Ready to order?</h3>
