@@ -324,12 +324,12 @@ export default function Home() {
             </a>
             <a href="https://x.com/uchvvjin" target="_blank"
               className="flex-1 flex items-center justify-center gap-3 bg-[#2c3040] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#1a1d26] md:shadow-[0_6px_0_0_#1a1d26] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
-              <X size={18} className="md:w-[22px] md:h-[22px]" /> X (DM)
+              <X size={18} className="md:w-[22px] md:h-[22px]" /> X
             </a>
           </div>
 
           <p className="text-[9px] md:text-[10px] text-gray-300 font-mono uppercase tracking-[0.3em] text-center mt-2 md:mt-4">
-            Developed by Alvin<br />
+            Developed by vin<br />
             <span className="opacity-40">♡</span>
           </p>
         </section>
