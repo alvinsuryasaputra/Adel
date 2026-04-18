@@ -313,7 +313,6 @@ export default function Home() {
           )}
 
           <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full max-w-2xl">
-            {/* UPDATE: Semua tombol order sekarang memakai tema #2c3040 */}
             <a href="https://wa.me/6282134140287" target="_blank"
               className="flex-1 flex items-center justify-center gap-3 bg-[#2c3040] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#1a1d26] md:shadow-[0_6px_0_0_#1a1d26] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
               <MessageCircle size={18} className="md:w-[22px] md:h-[22px]" /> WhatsApp
@@ -328,8 +327,9 @@ export default function Home() {
             </a>
           </div>
 
+          {/* UPDATE: Easter Egg Link IG Vin */}
           <p className="text-[9px] md:text-[10px] text-gray-300 font-mono uppercase tracking-[0.3em] text-center mt-2 md:mt-4">
-            Developed by vin<br />
+            Developed by <a href="https://instagram.com/vinfinfinfin" target="_blank" rel="noopener noreferrer">vin</a><br />
             <span className="opacity-40">♡</span>
           </p>
         </section>
