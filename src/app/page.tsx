@@ -36,67 +36,67 @@ export default function Home() {
 
       <div className="max-w-3xl w-full flex flex-col gap-[72px]">
 
-        {/* ── SECTION 1: HERO ── */}
-        <section className="flex flex-col md:flex-row gap-8 items-start">
+       {/* ── SECTION 1: HERO (Perbaikan agar Selalu Berdampingan) ── */}
+        <section className="flex flex-row gap-4 md:gap-8 items-start">
 
-          {/* Avatar */}
-          <div className="flex-shrink-0 w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-white shadow-md relative bg-[#e8e6e0]">
+          {/* Avatar (Ukuran disesuaikan sedikit untuk HP) */}
+          <div className="flex-shrink-0 w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-white shadow-md relative bg-[#e8e6e0]">
             <Image src="/avatar.png" alt="CIEL avatar" fill className="object-cover" priority />
           </div>
 
-          {/* Bio */}
+          {/* Bio (flex-1 agar mengisi ruang sisa) */}
           <div className="flex-1 flex flex-col gap-3.5">
             <div>
-              <h1 className="font-serif-display text-3xl md:text-[32px] font-bold text-[#2c3040] leading-tight tracking-tight">
+              <h1 className="font-serif-display text-2xl md:text-[32px] font-bold text-[#2c3040] leading-tight tracking-tight">
                 CIEL༉
               </h1>
-              <p className="text-[12px] md:text-[13px] text-slate-400 tracking-wide">(@uchvvjin)</p>
+              <p className="text-[11px] md:text-[13px] text-slate-400 tracking-wide">(@uchvvjin)</p>
             </div>
 
             <ul className="flex flex-col gap-1.5">
-              <li className="flex items-center gap-2 text-[12px] md:text-[13px] text-slate-500 font-medium">
-                <ChevronRight size={12} className="text-slate-300" /> ID / EN
+              <li className="flex items-center gap-2 text-[11px] md:text-[13px] text-slate-500 font-medium">
+                <ChevronRight size={11} className="text-slate-300 md:w-3 md:h-3" /> ID / EN
               </li>
-              <li className="flex items-center gap-2 text-[12px] md:text-[13px] text-slate-500 font-medium">
-                <ChevronRight size={12} className="text-slate-300" /> GMT +7
+              <li className="flex items-center gap-2 text-[11px] md:text-[13px] text-slate-500 font-medium">
+                <ChevronRight size={11} className="text-slate-300 md:w-3 md:h-3" /> GMT +7
               </li>
-              <li className="flex items-center gap-2 text-[10px] md:text-[11px] text-green-700 font-black uppercase tracking-widest">
-                <ChevronRight size={12} className="text-green-600" /> CMSN OPEN
+              <li className="flex items-center gap-1.5 md:gap-2 text-[9px] md:text-[11px] text-green-700 font-black uppercase tracking-widest">
+                <ChevronRight size={11} className="text-green-600 md:w-3 md:h-3" /> CMSN OPEN
               </li>
             </ul>
 
             <div className="flex gap-2.5 pt-1">
               <a href="https://x.com/uchvvjin" target="_blank"
-                className="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white transition-all shadow-sm">
-                <X size={16} />
+                className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white transition-all shadow-sm">
+                <X size={14} className="md:w-4 md:h-4" />
               </a>
               <a href="https://vgen.co/uchuujin" target="_blank"
-                className="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-purple-600 hover:text-white transition-all shadow-sm">
-                <Globe size={16} />
+                className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-purple-600 hover:text-white transition-all shadow-sm">
+                <Globe size={14} className="md:w-4 md:h-4" />
               </a>
               <a href="https://wa.me/6282134140287" target="_blank"
-                className="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-[#25d366] hover:text-white transition-all shadow-sm">
-                <MessageCircle size={16} />
+                className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-[#25d366] hover:text-white transition-all shadow-sm">
+                <MessageCircle size={14} className="md:w-4 md:h-4" />
               </a>
             </div>
           </div>
 
-          {/* Nav Box */}
-          <div className="w-full md:w-56 flex-shrink-0">
-            <div className="border-2 border-black bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] px-3 py-2 flex justify-between items-center mb-3">
-              <span className="text-[9px] font-black uppercase tracking-[0.2em] text-black">Navigation</span>
-              <span className="text-sm font-bold border-l-2 border-black pl-2">≡</span>
+          {/* Nav Box (Dibuat adaptif agar tidak terlalu lebar di HP) */}
+          <div className="w-48 md:w-56 flex-shrink-0 ml-auto">
+            <div className="border border-black bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:border-2 md:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] px-2 md:px-3 py-1.5 md:py-2 flex justify-between items-center mb-2.5 md:mb-3">
+              <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-black">Navigation</span>
+              <span className="text-xs md:text-sm font-bold border-l md:border-l-2 border-black pl-1.5 md:pl-2">≡</span>
             </div>
-            <ul className="flex flex-col gap-0 text-[11px] md:text-[12px] font-bold">
+            <ul className="flex flex-col gap-0 text-[10px] md:text-[12px] font-bold">
               {[
                 { href: '#pricelist', label: 'Pricelist & Samples' },
                 { href: '#capability', label: 'Capability' },
                 { href: '#terms', label: 'Terms of Service' },
               ].map((item) => (
-                <li key={item.href} className="border-b border-gray-200 pb-2 mb-2">
+                <li key={item.href} className="border-b border-gray-200 pb-1.5 md:pb-2 mb-1.5 md:mb-2">
                   <a href={item.href}
-                    className="nav-link flex items-center gap-2 text-slate-400 transition-all duration-150">
-                    <Star size={11} className="nav-star text-slate-300 transition-colors" />
+                    className="nav-link flex items-center gap-1.5 md:gap-2 text-slate-400 transition-all duration-150">
+                    <Star size={10} className="nav-star md:w-2.5 md:h-2.5 text-slate-300 transition-colors" />
                     {item.label}
                   </a>
                 </li>
