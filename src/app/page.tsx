@@ -160,6 +160,48 @@ export default function Home() {
           </div>
         </section>
 
+{/* SECTION: ART SAMPLES */}
+        <section className="space-y-12 pt-10 p-4 transition-all duration-500" id="samples">
+          <div className="text-center space-y-2">
+            <h2 className="text-3xl font-serif font-bold text-[#2c3e50] tracking-tight">Art Samples</h2>
+            <div className="h-1 w-20 bg-black mx-auto"></div>
+          </div>
+
+          {/* Sub-Section: Normal Art */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-serif italic font-semibold text-slate-700 border-l-4 border-yellow-400 pl-4">Normal Style</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {['sample1.jpg', 'sample2.jpg', 'sample3.jpg'].map((img, index) => (
+                <div key={index} className="group relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
+                  <Image 
+                    src={`/samples/${img}`} 
+                    alt={`Normal Sample ${index + 1}`}
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Sub-Section: Chibi Art */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-serif italic font-semibold text-slate-700 border-l-4 border-purple-400 pl-4">Chibi Style</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'].map((img, index) => (
+                <div key={index} className="group relative aspect-square rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
+                  <Image 
+                    src={`/samples/${img}`} 
+                    alt={`Chibi Sample ${index + 1}`}
+                    fill 
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 3: ADDITIONAL CHARGES */}
         <section className="pt-10 p-4 transition-all duration-500" id="additional">
           <table className="w-full text-sm border-collapse">
