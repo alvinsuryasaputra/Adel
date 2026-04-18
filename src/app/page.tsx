@@ -167,12 +167,14 @@ export default function Home() {
             <div className="h-1 w-20 bg-black mx-auto"></div>
           </div>
 
-          {/* Sub-Section: Normal Art */}
+          {/* Sub-Section: Normal Art (Diubah jadi Kotak/Square) */}
           <div className="space-y-6">
             <h3 className="text-xl font-serif italic font-semibold text-slate-700 border-l-4 border-yellow-400 pl-4">Normal Style</h3>
+            {/* Grid untuk Normal Style - 3 Kolom biar kelihatan sedikit lebih besar dari chibi */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {['sample1.jpg', 'sample2.jpg', 'sample3.jpg'].map((img, index) => (
-                <div key={index} className="group relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
+                // UPDATE DI SINI: aspect-[3/4] diubah jadi aspect-square
+                <div key={index} className="group relative aspect-square rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
                   <Image 
                     src={`/samples/${img}`} 
                     alt={`Normal Sample ${index + 1}`}
@@ -184,9 +186,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Sub-Section: Chibi Art */}
+          {/* Sub-Section: Chibi Art (Tetap sama) */}
           <div className="space-y-6">
             <h3 className="text-xl font-serif italic font-semibold text-slate-700 border-l-4 border-purple-400 pl-4">Chibi Style</h3>
+            {/* Grid untuk Chibi Style - 4 Kolom biar lucu kecil-kecil */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'].map((img, index) => (
                 <div key={index} className="group relative aspect-square rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
