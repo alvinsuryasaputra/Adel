@@ -312,14 +312,20 @@ export default function Home() {
             </div>
           )}
 
-          <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full max-w-md">
+          {/* UPDATE: max-w-2xl agar 3 tombol muat di layar laptop */}
+          <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full max-w-2xl">
             <a href="https://wa.me/6282134140287" target="_blank"
-              className="flex-1 flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#16a34a] md:shadow-[0_6px_0_0_#16a34a] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
+              className="flex-1 flex items-center justify-center gap-3 bg-[#25D366] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#16a34a] md:shadow-[0_6px_0_0_#16a34a] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
               <MessageCircle size={18} className="md:w-[22px] md:h-[22px]" /> WhatsApp
             </a>
             <a href="https://vgen.co/uchuujin" target="_blank"
-              className="flex-1 flex items-center justify-center gap-3 bg-[#7C3AED] text-white px-8 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#5b21b6] md:shadow-[0_6px_0_0_#5b21b6] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
+              className="flex-1 flex items-center justify-center gap-3 bg-[#7C3AED] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#5b21b6] md:shadow-[0_6px_0_0_#5b21b6] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
               <Globe size={18} className="md:w-[22px] md:h-[22px]" /> VGen
+            </a>
+            {/* UPDATE: Tombol X ditambahkan di sini */}
+            <a href="https://x.com/uchvvjin" target="_blank"
+              className="flex-1 flex items-center justify-center gap-3 bg-[#0f1419] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#000000] md:shadow-[0_6px_0_0_#000000] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
+              <X size={18} className="md:w-[22px] md:h-[22px]" /> X (DM)
             </a>
           </div>
 
