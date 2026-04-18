@@ -125,10 +125,6 @@ export default function Home() {
                     <td className="py-5 italic text-center text-base">Bust up</td>
                     <td className="py-5 font-bold text-center text-base text-black font-mono">80.000</td>
                   </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="py-5 italic text-center text-base">Waist up</td>
-                    <td className="py-5 font-bold text-center text-base text-black font-mono">120.000</td>
-                  </tr>
                 </tbody>
               </table>
             </div>
