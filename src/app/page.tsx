@@ -1,10 +1,23 @@
 'use client';
+import { useState } from 'react';
 import Image from 'next/image';
 import { MessageCircle, Globe, X, ChevronRight, Star } from 'lucide-react';
 
 export default function Home() {
+  // State untuk melacak menu apa yang sedang aktif (home = tidak ada yang terbuka)
+  const [activeView, setActiveView] = useState('home');
+
+  // Fungsi untuk mengganti tampilan
+  const toggleView = (view: string) => {
+    if (activeView === view) {
+      setActiveView('home'); // Tutup jika diklik lagi
+    } else {
+      setActiveView(view); // Buka menu yang diklik
+    }
+  };
+
   return (
-    <main className="min-h-screen bg-[#f5f4f0] text-[#3d405b] font-sans flex justify-center py-12 px-6">
+    <main className="min-h-screen bg-[#f5f4f0] text-[#3d405b] font-sans flex justify-center py-10 md:py-12 px-4 md:px-6">
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
@@ -13,30 +26,27 @@ export default function Home() {
           font-family: 'Playfair Display', serif;
         }
 
-        @keyframes sectionHighlight {
-          0% {
-            background-color: rgba(253, 224, 71, 0.4);
-            transform: scale(1.01);
-            box-shadow: 0 0 20px rgba(253, 224, 71, 0.2);
+        /* Animasi Transisi ala Aplikasi (Swipe Kiri) */
+        @keyframes fadeInSlide {
+          from { 
+            opacity: 0; 
+            transform: translateX(15px); 
           }
-          100% {
-            background-color: transparent;
-            transform: scale(1);
-            box-shadow: none;
+          to { 
+            opacity: 1; 
+            transform: translateX(0); 
           }
         }
-        section:target {
-          animation: sectionHighlight 2s ease-out;
-          border-radius: 14px;
+        .animate-view {
+          animation: fadeInSlide 0.4s ease-out forwards;
         }
 
-        .nav-link:hover .nav-star { color: #1a1a1a; }
-        .nav-link:hover { color: #1a1a1a; padding-left: 4px; }
+        .nav-button:hover .nav-star { color: #1a1a1a; }
       `}</style>
 
-      <div className="max-w-3xl w-full flex flex-col gap-[72px]">
+      <div className="max-w-3xl w-full flex flex-col gap-8 md:gap-10">
 
-       {/* ── SECTION 1: HERO (Perbaikan Presisi Layar HP) ── */}
+        {/* ── SECTION 1: HERO (SELALU MUNCUL) ── */}
         <section className="flex flex-row justify-between items-start gap-2 sm:gap-4 md:gap-8 w-full">
 
           {/* KIRI: Avatar & Bio */}
@@ -84,220 +94,252 @@ export default function Home() {
             </div>
           </div>
 
-          {/* KANAN: Nav Box */}
-          <div className="w-[115px] sm:w-[140px] md:w-56 flex-shrink-0">
+          {/* KANAN: Nav Box Interaktif */}
+          <div className="w-[125px] sm:w-[140px] md:w-56 flex-shrink-0">
             <div className="border border-black bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:border-2 md:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] px-1.5 md:px-3 py-1 md:py-2 flex justify-between items-center mb-2 md:mb-3">
               <span className="text-[6.5px] sm:text-[7px] md:text-[9px] font-black uppercase tracking-tight md:tracking-[0.2em] text-black truncate">Navigation</span>
               <span className="text-[10px] md:text-sm font-bold border-l border-black pl-1 md:pl-2">≡</span>
             </div>
             <ul className="flex flex-col gap-0 text-[8px] sm:text-[9px] md:text-[12px] font-bold">
               {[
-                { href: '#pricelist', label: 'Pricelist & Samples' },
-                { href: '#capability', label: 'Capability' },
-                { href: '#terms', label: 'Terms of Service' },
+                { id: 'pricelist', label: 'Pricelist & Samples' },
+                { id: 'capability', label: 'Capability' },
+                { id: 'terms', label: 'Terms of Service' },
               ].map((item) => (
-                <li key={item.href} className="border-b border-gray-200 pb-1.5 md:pb-2 mb-1.5 md:mb-2">
-                  <a href={item.href}
-                    className="nav-link flex items-center gap-1 md:gap-2 text-slate-400 transition-all duration-150">
-                    <Star size={8} className="nav-star md:w-2.5 md:h-2.5 flex-shrink-0 text-slate-300 transition-colors" />
+                <li key={item.id} className="border-b border-gray-200 pb-1.5 md:pb-2 mb-1.5 md:mb-2">
+                  <button 
+                    onClick={() => toggleView(item.id)}
+                    className={`nav-button w-full text-left flex items-center gap-1 md:gap-2 transition-all duration-300 ${
+                      activeView === item.id 
+                        ? 'text-black pl-1.5 md:pl-2 border-l-2 border-[#2c3040]' 
+                        : 'text-slate-400 hover:text-black hover:pl-1'
+                    }`}
+                  >
+                    <Star size={8} className={`nav-star md:w-2.5 md:h-2.5 flex-shrink-0 transition-colors ${activeView === item.id ? 'text-black' : 'text-slate-300'}`} />
                     <span className="truncate">{item.label}</span>
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
           </div>
         </section>
 
-        {/* ── SECTION 2: PRICELIST ── */}
-        <section id="pricelist" className="flex flex-col gap-10 md:gap-14 p-2 md:p-4 transition-all duration-500">
+        {/* ── AREA KONTEN DINAMIS (MUNCUL SESUAI PILIHAN NAVIGASI) ── */}
+        {activeView !== 'home' && (
+          <div className="animate-view flex flex-col gap-8 md:gap-12 pt-4 md:pt-6 border-t-2 border-dashed border-gray-200">
+            
+            {/* VIEW 1: PRICELIST & SAMPLES */}
+            {activeView === 'pricelist' && (
+              <div className="flex flex-col gap-10 md:gap-14">
+                {/* Tabel Harga */}
+                <div className="flex flex-col gap-8">
+                  {/* Normal */}
+                  <table className="w-full border-collapse text-sm">
+                    <thead>
+                      <tr className="border-b-2 border-black">
+                        <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Normal</th>
+                        <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Price (IDR)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { type: 'Headshot', price: '65.000' },
+                        { type: 'Bust up', price: '80.000' },
+                      ].map((row) => (
+                        <tr key={row.type} className="border-b border-gray-200">
+                          <td className="py-4 md:py-5 italic text-center text-[13px] md:text-[15px] text-slate-500">{row.type}</td>
+                          <td className="py-4 md:py-5 font-bold text-center text-[13px] md:text-[15px] text-black font-mono">{row.price}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
 
-          {/* Normal */}
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b-2 border-black">
-                <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Normal</th>
-                <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Price (IDR)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { type: 'Headshot', price: '65.000' },
-                { type: 'Bust up', price: '80.000' },
-              ].map((row) => (
-                <tr key={row.type} className="border-b border-gray-200">
-                  <td className="py-4 md:py-5 italic text-center text-[13px] md:text-[15px] text-slate-500">{row.type}</td>
-                  <td className="py-4 md:py-5 font-bold text-center text-[13px] md:text-[15px] text-black font-mono">{row.price}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          {/* Chibi */}
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b-2 border-black">
-                <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Chibi</th>
-                <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Price (IDR)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { type: 'Halfbody', price: '50.000' },
-                { type: 'Fullbody', price: '75.000' },
-                { type: 'Skeb Emotes (×4)', price: '80.000' },
-              ].map((row) => (
-                <tr key={row.type} className="border-b border-gray-200">
-                  <td className="py-4 md:py-5 italic text-center text-[13px] md:text-[15px] text-slate-500">{row.type}</td>
-                  <td className="py-4 md:py-5 font-bold text-center text-[13px] md:text-[15px] text-black font-mono">{row.price}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
-
-        {/* ── SECTION 3: ART SAMPLES ── */}
-        <section id="samples" className="flex flex-col gap-8 p-2 md:p-4 transition-all duration-500">
-          <div>
-            <h2 className="font-serif-display text-2xl md:text-[28px] font-bold text-[#2c3040] tracking-tight">Art Samples</h2>
-            <div className="w-16 h-[3px] bg-black mt-2" />
-          </div>
-
-          {/* Normal Style */}
-          <div>
-            <h3 className="font-serif-display text-[16px] md:text-[17px] italic font-semibold text-slate-600 border-l-4 border-yellow-400 pl-4 mb-4">
-              Normal Style
-            </h3>
-            <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
-              {['sample1.jpg', 'sample2.jpg', 'sample3.jpg'].map((img, i) => (
-                <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
-                  <Image
-                    src={`/samples/${img}`}
-                    alt={`Normal sample ${i + 1}`}
-                    width={1000}
-                    height={1000}
-                    className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
-                  />
+                  {/* Chibi */}
+                  <table className="w-full border-collapse text-sm">
+                    <thead>
+                      <tr className="border-b-2 border-black">
+                        <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Chibi</th>
+                        <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Price (IDR)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { type: 'Halfbody', price: '50.000' },
+                        { type: 'Fullbody', price: '75.000' },
+                        { type: 'Skeb Emotes (×4)', price: '80.000' },
+                      ].map((row) => (
+                        <tr key={row.type} className="border-b border-gray-200">
+                          <td className="py-4 md:py-5 italic text-center text-[13px] md:text-[15px] text-slate-500">{row.type}</td>
+                          <td className="py-4 md:py-5 font-bold text-center text-[13px] md:text-[15px] text-black font-mono">{row.price}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Chibi Style */}
-          <div>
-            <h3 className="font-serif-display text-[16px] md:text-[17px] italic font-semibold text-slate-600 border-l-4 border-purple-400 pl-4 mb-4">
-              Chibi Style
-            </h3>
-            <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
-              {['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'].map((img, i) => (
-                <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
-                  <Image
-                    src={`/samples/${img}`}
-                    alt={`Chibi sample ${i + 1}`}
-                    width={1000}
-                    height={1000}
-                    className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
-                  />
+                {/* Additional Charges */}
+                <div>
+                  <table className="w-full border-collapse text-sm">
+                    <thead>
+                      <tr className="border-b-2 border-black">
+                        <th className="font-serif-display text-base md:text-[18px] font-bold text-center pb-3 md:pb-4 w-1/2">Additional charges</th>
+                        <th className="font-serif-display text-base md:text-[18px] font-bold text-center pb-3 md:pb-4 w-1/2">Charge (IDR)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { label: 'Props / Complex Design', charge: '+5k – 25k/ea' },
+                        { label: 'Private Fee', charge: '+75%' },
+                        { label: 'Additional Character', charge: '+100%/ea' },
+                        { label: 'Commercial Use', charge: '+120%' },
+                      ].map((row) => (
+                        <tr key={row.label} className="border-b border-gray-200 text-center">
+                          <td className="py-3 md:py-4 italic text-slate-500 text-[13px] md:text-[14px]">{row.label}</td>
+                          <td className="py-3 md:py-4 font-bold text-black text-[13px] md:text-[14px]">{row.charge}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-              ))}
+
+                {/* Art Samples */}
+                <div className="flex flex-col gap-8">
+                  <div className="text-center md:text-left">
+                    <h2 className="font-serif-display text-2xl md:text-[28px] font-bold text-[#2c3040] tracking-tight">Art Samples</h2>
+                    <div className="w-16 h-[3px] bg-black mt-2 mx-auto md:mx-0" />
+                  </div>
+
+                  {/* Normal Style */}
+                  <div>
+                    <h3 className="font-serif-display text-[16px] md:text-[17px] italic font-semibold text-slate-600 border-l-4 border-yellow-400 pl-4 mb-4">
+                      Normal Style
+                    </h3>
+                    <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
+                      {['sample1.jpg', 'sample2.jpg', 'sample3.jpg'].map((img, i) => (
+                        <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
+                          <Image
+                            src={`/samples/${img}`}
+                            alt={`Normal sample ${i + 1}`}
+                            width={1000}
+                            height={1000}
+                            className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Chibi Style */}
+                  <div>
+                    <h3 className="font-serif-display text-[16px] md:text-[17px] italic font-semibold text-slate-600 border-l-4 border-purple-400 pl-4 mb-4">
+                      Chibi Style
+                    </h3>
+                    <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
+                      {['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'].map((img, i) => (
+                        <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
+                          <Image
+                            src={`/samples/${img}`}
+                            alt={`Chibi sample ${i + 1}`}
+                            width={1000}
+                            height={1000}
+                            className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* VIEW 2: CAPABILITY */}
+            {activeView === 'capability' && (
+              <div className="animate-view">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b-2 border-black">
+                      <th className="font-serif-display text-base md:text-[18px] font-bold text-green-700 text-center uppercase tracking-widest pb-3 md:pb-4 w-1/2">Can</th>
+                      <th className="font-serif-display text-base md:text-[18px] font-bold text-red-700 text-center uppercase tracking-widest pb-3 md:pb-4 w-1/2">Cannot</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      ['Female Characters', 'Extreme Muscle'],
+                      ['Original Characters (OC)', 'Elderly / Old People'],
+                      ['Fanart', 'Mecha / Robots'],
+                      ['Kemonomimi', 'Full Furry'],
+                      ['Side Profiles', 'Heavy NSFW'],
+                      ['Male (Ask first)', 'Realism'],
+                    ].map(([can, cant], i) => (
+                      <tr key={i} className="border-b border-gray-200">
+                        <td className="py-3 md:py-4 italic text-center text-[13px] md:text-[15px] text-slate-500">{can}</td>
+                        <td className="py-3 md:py-4 italic text-center text-[13px] md:text-[15px] text-slate-500">{cant}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* VIEW 3: TERMS OF SERVICE */}
+            {activeView === 'terms' && (
+              <div className="animate-view flex flex-col gap-6">
+                <h2 className="font-serif-display text-2xl md:text-[28px] font-bold text-[#2c3040] tracking-tight text-center md:text-left">Terms of Service</h2>
+                <div className="bg-white p-6 md:p-8 border border-gray-200 rounded-2xl shadow-sm">
+                  <ul className="flex flex-col gap-4 md:gap-5 text-[13px] md:text-[14px] text-slate-500 leading-relaxed">
+                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">01.</span> First come, first served.</li>
+                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">02.</span> TAT: 4 – 20 hari kerja per karya.</li>
+                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">03.</span> Update progres berkala via DM.</li>
+                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">04.</span> Mohon bersabar! Tidak menerima komisi mendadak/deadline.</li>
+                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">05.</span> DP 50% di awal, pelunasan setelah sketsa.</li>
+                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">06.</span> Revisi sketsa bebas, setelah sketsa hanya bisa revisi warna.</li>
+                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">07.</span> No Refund! kecuali jika saya tidak bisa melanjutkan karena kondisi tertentu.</li>
+                    <li>
+                      <p className="font-bold text-red-700 bg-red-50 border-2 border-red-100 rounded-xl px-4 md:px-5 py-3 md:py-4 italic text-[12px] md:text-[13px] leading-relaxed">
+                        DILARANG KERAS menggunakan hasil karya untuk keperluan AI (Artificial Intelligence) dan/atau NFT.
+                      </p>
+                    </li>
+                    <li className="text-slate-400 italic text-[11px] md:text-[12px] border-t border-gray-100 pt-3 md:pt-4">
+                      * Saya selalu memposting hasil commission ke SNS, jadi mohon beri tahu dulu jika tidak ingin dipublikasikan.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
+
+            {/* Tombol Tutup / Kembali Ringan */}
+            <button 
+              onClick={() => setActiveView('home')}
+              className="mt-4 mx-auto md:mx-0 w-fit text-[11px] md:text-sm font-bold text-slate-400 hover:text-black uppercase tracking-widest border-b border-transparent hover:border-black transition-all"
+            >
+              Close / Return
+            </button>
+          </div>
+        )}
+
+        {/* ── FOOTER / TOMBOL ORDER (SELALU MUNCUL DI BAWAH) ── */}
+        <section className={`flex flex-col items-center gap-6 md:gap-8 transition-all duration-500 ${activeView === 'home' ? 'pt-2' : 'pt-8 border-t-2 border-gray-200'}`}>
+          
+          {/* Sembunyikan teks "Ready to order" jika di mode home biar lebih estetik dan mirip linktree */}
+          {activeView !== 'home' && (
+            <div className="text-center flex flex-col items-center gap-2">
+              <h3 className="font-serif-display italic text-2xl md:text-[28px] text-[#2c3040]">Ready to order?</h3>
+              <p className="text-slate-400 text-[10px] md:text-[11px] uppercase tracking-[0.2em]">Choose your preferred platform</p>
             </div>
-          </div>
-        </section>
+          )}
 
-        {/* ── SECTION 4: ADDITIONAL CHARGES ── */}
-        <section id="additional" className="p-2 md:p-4 transition-all duration-500">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b-2 border-black">
-                <th className="font-serif-display text-base md:text-[18px] font-bold text-center pb-3 md:pb-4 w-1/2">Additional charges</th>
-                <th className="font-serif-display text-base md:text-[18px] font-bold text-center pb-3 md:pb-4 w-1/2">Charge (IDR)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { label: 'Props / Complex Design', charge: '+5k – 25k/ea' },
-                { label: 'Private Fee', charge: '+75%' },
-                { label: 'Additional Character', charge: '+100%/ea' },
-                { label: 'Commercial Use', charge: '+120%' },
-              ].map((row) => (
-                <tr key={row.label} className="border-b border-gray-200 text-center">
-                  <td className="py-3 md:py-4 italic text-slate-500 text-[13px] md:text-[14px]">{row.label}</td>
-                  <td className="py-3 md:py-4 font-bold text-black text-[13px] md:text-[14px]">{row.charge}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
-
-        {/* ── SECTION 5: CAPABILITY ── */}
-        <section id="capability" className="p-2 md:p-4 border-t-2 border-gray-200 transition-all duration-500">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b-2 border-black">
-                <th className="font-serif-display text-base md:text-[18px] font-bold text-green-700 text-center uppercase tracking-widest pb-3 md:pb-4 w-1/2">Can</th>
-                <th className="font-serif-display text-base md:text-[18px] font-bold text-red-700 text-center uppercase tracking-widest pb-3 md:pb-4 w-1/2">Cannot</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ['Female Characters', 'Extreme Muscle'],
-                ['Original Characters (OC)', 'Elderly / Old People'],
-                ['Fanart', 'Mecha / Robots'],
-                ['Kemonomimi', 'Full Furry'],
-                ['Side Profiles', 'Heavy NSFW'],
-                ['Male (Ask first)', 'Realism'],
-              ].map(([can, cant], i) => (
-                <tr key={i} className="border-b border-gray-200">
-                  <td className="py-3 md:py-4 italic text-center text-[13px] md:text-[15px] text-slate-500">{can}</td>
-                  <td className="py-3 md:py-4 italic text-center text-[13px] md:text-[15px] text-slate-500">{cant}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
-
-        {/* ── SECTION 6: TERMS OF SERVICE ── */}
-        <section id="terms" className="flex flex-col gap-6 p-2 md:p-4 border-t-2 border-gray-200 transition-all duration-500">
-          <h2 className="font-serif-display text-2xl md:text-[28px] font-bold text-[#2c3040] tracking-tight">Terms of Service</h2>
-          <div className="bg-white p-6 md:p-8 border border-gray-200 rounded-2xl shadow-sm">
-            <ul className="flex flex-col gap-4 md:gap-5 text-[13px] md:text-[14px] text-slate-500 leading-relaxed">
-              <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">01.</span> First come, first served.</li>
-              <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">02.</span> TAT: 4 – 20 hari kerja per karya.</li>
-              <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">03.</span> Update progres berkala via DM.</li>
-              <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">04.</span> Mohon bersabar! Tidak menerima komisi mendadak/deadline.</li>
-              <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">05.</span> DP 50% di awal, pelunasan setelah sketsa.</li>
-              <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">06.</span> Revisi sketsa bebas, setelah sketsa hanya bisa revisi warna.</li>
-              <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">07.</span> No Refund! kecuali jika saya tidak bisa melanjutkan karena kondisi tertentu.</li>
-              <li>
-                <p className="font-bold text-red-700 bg-red-50 border-2 border-red-100 rounded-xl px-4 md:px-5 py-3 md:py-4 italic text-[12px] md:text-[13px] leading-relaxed">
-                  DILARANG KERAS menggunakan hasil karya untuk keperluan AI (Artificial Intelligence) dan/atau NFT.
-                </p>
-              </li>
-              <li className="text-slate-400 italic text-[11px] md:text-[12px] border-t border-gray-100 pt-3 md:pt-4">
-                * Saya selalu memposting hasil commission ke SNS, jadi mohon beri tahu dulu jika tidak ingin dipublikasikan.
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* ── FOOTER ── */}
-        <section className="flex flex-col items-center gap-6 md:gap-8 pt-8 pb-12 border-t-2 border-gray-200">
-          <div className="text-center flex flex-col items-center gap-2">
-            <h3 className="font-serif-display italic text-2xl md:text-[28px] text-[#2c3040]">Ready to order?</h3>
-            <p className="text-slate-400 text-[10px] md:text-[11px] uppercase tracking-[0.2em]">Choose your preferred platform</p>
-          </div>
-
-          <div className="flex flex-col md:flex-row gap-4 w-full max-w-md">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full max-w-md">
             <a href="https://wa.me/6282134140287" target="_blank"
-              className="flex-1 flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 py-4 md:py-5 rounded-2xl font-black text-[14px] md:text-[15px] shadow-[0_6px_0_0_#16a34a] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
-              <MessageCircle size={20} className="md:w-[22px] md:h-[22px]" /> WhatsApp
+              className="flex-1 flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#16a34a] md:shadow-[0_6px_0_0_#16a34a] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
+              <MessageCircle size={18} className="md:w-[22px] md:h-[22px]" /> WhatsApp
             </a>
             <a href="https://vgen.co/uchuujin" target="_blank"
-              className="flex-1 flex items-center justify-center gap-3 bg-[#7C3AED] text-white px-8 py-4 md:py-5 rounded-2xl font-black text-[14px] md:text-[15px] shadow-[0_6px_0_0_#5b21b6] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
-              <Globe size={20} className="md:w-[22px] md:h-[22px]" /> VGen
+              className="flex-1 flex items-center justify-center gap-3 bg-[#7C3AED] text-white px-8 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#5b21b6] md:shadow-[0_6px_0_0_#5b21b6] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
+              <Globe size={18} className="md:w-[22px] md:h-[22px]" /> VGen
             </a>
           </div>
 
-          <p className="text-[9px] md:text-[10px] text-gray-300 font-mono uppercase tracking-[0.3em] text-center leading-loose mt-4">
+          <p className="text-[9px] md:text-[10px] text-gray-300 font-mono uppercase tracking-[0.3em] text-center mt-2 md:mt-4">
             Developed by Alvin<br />
             <span className="opacity-40">♡</span>
           </p>
