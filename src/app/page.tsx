@@ -167,36 +167,38 @@ export default function Home() {
             <div className="h-1 w-20 bg-black mx-auto"></div>
           </div>
 
-{/* Sub-Section: Normal Art */}
+          {/* Sub-Section: Normal Art (Bebas Ukuran ala Pinterest) */}
           <div className="space-y-6">
             <h3 className="text-xl font-serif italic font-semibold text-slate-700 border-l-4 border-yellow-400 pl-4">Normal Style</h3>
-            {/* UPDATE DI SINI: grid-cols-2 md:grid-cols-4 (Disamakan persis dengan Chibi) */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {/* Pakai CSS Columns (columns-2 untuk HP, columns-4 untuk Laptop) */}
+            <div className="columns-2 md:columns-4 gap-4 space-y-4">
               {['sample1.jpg', 'sample2.jpg', 'sample3.jpg'].map((img, index) => (
-                <div key={index} className="group relative aspect-square rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
+                <div key={index} className="group relative rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all break-inside-avoid mb-4">
                   <Image 
                     src={`/samples/${img}`} 
                     alt={`Normal Sample ${index + 1}`}
-                    fill 
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    width={1000} // Angka batas resolusi untuk Next.js
+                    height={1000} // Angka batas resolusi untuk Next.js
+                    className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Sub-Section: Chibi Art (Tetap sama) */}
+          {/* Sub-Section: Chibi Art (Bebas Ukuran ala Pinterest) */}
           <div className="space-y-6">
             <h3 className="text-xl font-serif italic font-semibold text-slate-700 border-l-4 border-purple-400 pl-4">Chibi Style</h3>
-            {/* Grid untuk Chibi Style - 4 Kolom biar lucu kecil-kecil */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {/* Pakai CSS Columns (columns-2 untuk HP, columns-4 untuk Laptop) */}
+            <div className="columns-2 md:columns-4 gap-4 space-y-4">
               {['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'].map((img, index) => (
-                <div key={index} className="group relative aspect-square rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
+                <div key={index} className="group relative rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all break-inside-avoid mb-4">
                   <Image 
                     src={`/samples/${img}`} 
                     alt={`Chibi Sample ${index + 1}`}
-                    fill 
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    width={1000} 
+                    height={1000} 
+                    className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               ))}
