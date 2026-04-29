@@ -125,38 +125,19 @@ export default function Home() {
             {activeView === 'pricelist' && (
               <div className="flex flex-col gap-10 md:gap-14">
                 <div className="flex flex-col gap-8">
+                  {/* TABEL HARGA BARU */}
                   <table className="w-full border-collapse text-sm">
                     <thead>
                       <tr className="border-b-2 border-black">
-                        <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Normal</th>
-                        <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Price (IDR)</th>
+                        <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Commission Type</th>
+                        <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Price (IDR / USD)</th>
                       </tr>
                     </thead>
                     <tbody>
                       {[
-                        { type: 'Headshot', price: '65.000' },
-                        { type: 'Bust up', price: '80.000' },
-                      ].map((row) => (
-                        <tr key={row.type} className="border-b border-gray-200">
-                          <td className="py-4 md:py-5 italic text-center text-[13px] md:text-[15px] text-slate-500">{row.type}</td>
-                          <td className="py-4 md:py-5 font-bold text-center text-[13px] md:text-[15px] text-black font-mono">{row.price}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-
-                  <table className="w-full border-collapse text-sm">
-                    <thead>
-                      <tr className="border-b-2 border-black">
-                        <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Chibi</th>
-                        <th className="font-serif-display text-lg md:text-[22px] font-bold text-center uppercase tracking-tight pb-3 md:pb-4 w-1/2">Price (IDR)</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        { type: 'Halfbody', price: '50.000' },
-                        { type: 'Fullbody', price: '75.000' },
-                        { type: 'Skeb Emotes (×4)', price: '80.000' },
+                        { type: 'Chibi Icon', price: '50.000 / $15' },
+                        { type: 'Portrait Skeb', price: '80.000 / $20' },
+                        { type: 'Chibi Mini Splash', price: '85.000 / $25' },
                       ].map((row) => (
                         <tr key={row.type} className="border-b border-gray-200">
                           <td className="py-4 md:py-5 italic text-center text-[13px] md:text-[15px] text-slate-500">{row.type}</td>
@@ -172,7 +153,7 @@ export default function Home() {
                     <thead>
                       <tr className="border-b-2 border-black">
                         <th className="font-serif-display text-base md:text-[18px] font-bold text-center pb-3 md:pb-4 w-1/2">Additional charges</th>
-                        <th className="font-serif-display text-base md:text-[18px] font-bold text-center pb-3 md:pb-4 w-1/2">Charge (IDR)</th>
+                        <th className="font-serif-display text-base md:text-[18px] font-bold text-center pb-3 md:pb-4 w-1/2">Charge</th>
                       </tr>
                     </thead>
                     <tbody>
