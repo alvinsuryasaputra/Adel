@@ -59,32 +59,27 @@ export default function Home() {
                 <p className="text-[9px] sm:text-[10px] md:text-[13px] text-slate-400 tracking-wide mt-1 truncate">(@uchvvjin)</p>
               </div>
 
+              {/* ── LIST DENGAN BULLET POINTS ── */}
               <ul className="flex flex-col gap-1 md:gap-1.5">
-                <li className="flex items-center gap-1.5 md:gap-2 text-[9px] md:text-[13px] text-slate-500 font-medium truncate">
-                  <ChevronRight size={10} className="text-slate-300 md:w-3 md:h-3 flex-shrink-0" /> ID / EN
+                <li className="flex items-center gap-2 md:gap-3 text-[9px] md:text-[13px] text-slate-500 font-medium truncate">
+                  <span className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-slate-300 flex-shrink-0" /> ID / EN
                 </li>
-                <li className="flex items-center gap-1.5 md:gap-2 text-[9px] md:text-[13px] text-slate-500 font-medium truncate">
-                  <ChevronRight size={10} className="text-slate-300 md:w-3 md:h-3 flex-shrink-0" /> GMT +7
+                <li className="flex items-center gap-2 md:gap-3 text-[9px] md:text-[13px] text-slate-500 font-medium truncate">
+                  <span className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-slate-300 flex-shrink-0" /> GMT +7
                 </li>
-                <li className="flex items-center gap-1 md:gap-2 text-[8px] md:text-[11px] text-green-700 font-black uppercase tracking-widest truncate">
-                  <ChevronRight size={10} className="text-green-600 md:w-3 md:h-3 flex-shrink-0" /> ART AND ENTERTAINMENT
+                <li className="flex items-center gap-2 md:gap-3 text-[8px] md:text-[11px] text-[#2c3040] font-black uppercase tracking-widest truncate">
+                  <span className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-[#2c3040] flex-shrink-0 opacity-40" /> ART AND ENTERTAINMENT
                 </li>
               </ul>
 
-              <div className="flex flex-wrap gap-1.5 md:gap-2.5 pt-0.5 md:pt-1">
-                <a href="https://x.com/uchvvjin" target="_blank"
-                  className="w-6 h-6 md:w-9 md:h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white transition-all shadow-sm">
-                  <X size={12} className="md:w-4 md:h-4" />
-                </a>
-                <a href="https://vgen.co/uchuujin" target="_blank"
-                  className="w-6 h-6 md:w-9 md:h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-purple-600 hover:text-white transition-all shadow-sm">
-                  <Globe size={12} className="md:w-4 md:h-4" />
-                </a>
-                <a href="https://wa.me/6282134140287" target="_blank"
-                  className="w-6 h-6 md:w-9 md:h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-[#25d366] hover:text-white transition-all shadow-sm">
-                  <MessageCircle size={12} className="md:w-4 md:h-4" />
+              {/* ── BUTTON PROJECT SEKAI ── */}
+              <div className="flex pt-1 md:pt-1.5">
+                <a href="https://wa.me/6282134140287?text=Project%20Sekai!" target="_blank"
+                  className="px-4 py-1.5 md:px-5 md:py-2 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-[#2c3040] hover:text-white transition-all shadow-sm text-[10px] md:text-[12px] font-bold text-slate-500 tracking-wide">
+                  Project Sekai?
                 </a>
               </div>
+              
             </div>
           </div>
 
