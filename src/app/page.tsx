@@ -67,7 +67,7 @@ export default function Home() {
                   <ChevronRight size={10} className="text-slate-300 md:w-3 md:h-3 flex-shrink-0" /> GMT +7
                 </li>
                 <li className="flex items-center gap-1 md:gap-2 text-[8px] md:text-[11px] text-green-700 font-black uppercase tracking-widest truncate">
-                  <ChevronRight size={10} className="text-green-600 md:w-3 md:h-3 flex-shrink-0" /> CMSN OPEN
+                  <ChevronRight size={10} className="text-green-600 md:w-3 md:h-3 flex-shrink-0" /> ART AND ENTERTAINMENT
                 </li>
               </ul>
 
@@ -125,7 +125,6 @@ export default function Home() {
             {activeView === 'pricelist' && (
               <div className="flex flex-col gap-10 md:gap-14">
                 <div className="flex flex-col gap-8">
-                  {/* TABEL HARGA BARU */}
                   <table className="w-full border-collapse text-sm">
                     <thead>
                       <tr className="border-b-2 border-black">
@@ -308,7 +307,6 @@ export default function Home() {
             </a>
           </div>
 
-          {/* UPDATE: Easter Egg Link IG Vin */}
           <p className="text-[9px] md:text-[10px] text-gray-300 font-mono uppercase tracking-[0.3em] text-center mt-2 md:mt-4">
             Developed by <a href="https://instagram.com/vinfinfinfin" target="_blank" rel="noopener noreferrer">vin</a><br />
             <span className="opacity-40">♡</span>
