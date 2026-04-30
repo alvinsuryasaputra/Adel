@@ -76,7 +76,7 @@ export default function Home() {
               <div className="flex pt-1 md:pt-1.5">
                 <a href="https://wa.me/6282134140287?text=Project%20Sekai!" target="_blank"
                   className="px-4 py-1.5 md:px-5 md:py-2 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-[#2c3040] hover:text-white transition-all shadow-sm text-[10px] md:text-[12px] font-bold text-slate-500 tracking-wide">
-                  Project Sekai?
+                  Project Sekai Reroll Account?
                 </a>
               </div>
               
@@ -85,12 +85,13 @@ export default function Home() {
 
           <div className="w-[125px] sm:w-[140px] md:w-56 flex-shrink-0">
             <div className="border border-black bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:border-2 md:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] px-1.5 md:px-3 py-1 md:py-2 flex justify-between items-center mb-2 md:mb-3">
-              <span className="text-[6.5px] sm:text-[7px] md:text-[9px] font-black uppercase tracking-tight md:tracking-[0.2em] text-black truncate">Navigation</span>
+              <span className="text-[6.5px] sm:text-[7px] md:text-[9px] font-black uppercase tracking-tight md:tracking-[0.2em] text-black truncate">ART COMMISSION</span>
               <span className="text-[10px] md:text-sm font-bold border-l border-black pl-1 md:pl-2">≡</span>
             </div>
             <ul className="flex flex-col gap-0 text-[8px] sm:text-[9px] md:text-[12px] font-bold">
               {[
-                { id: 'pricelist', label: 'Pricelist & Samples' },
+                { id: 'pricelist', label: 'Pricelist' },
+                { id: 'samples', label: 'Samples' },
                 { id: 'capability', label: 'Capability' },
                 { id: 'terms', label: 'Terms of Service' },
               ].map((item) => (
@@ -116,7 +117,7 @@ export default function Home() {
         {activeView !== 'home' && (
           <div className="animate-view flex flex-col gap-8 md:gap-12 pt-4 md:pt-6 border-t-2 border-dashed border-gray-200">
             
-            {/* VIEW 1: PRICELIST & SAMPLES */}
+            {/* VIEW 1: PRICELIST */}
             {activeView === 'pricelist' && (
               <div className="flex flex-col gap-10 md:gap-14">
                 <div className="flex flex-col gap-8">
@@ -165,55 +166,58 @@ export default function Home() {
                     </tbody>
                   </table>
                 </div>
+              </div>
+            )}
 
-                <div className="flex flex-col gap-8">
-                  <div className="text-center md:text-left">
-                    <h2 className="font-serif-display text-2xl md:text-[28px] font-bold text-[#2c3040] tracking-tight">Art Samples</h2>
-                    <div className="w-16 h-[3px] bg-black mt-2 mx-auto md:mx-0" />
+            {/* VIEW 2: SAMPLES */}
+            {activeView === 'samples' && (
+              <div className="flex flex-col gap-8">
+                <div className="text-center md:text-left">
+                  <h2 className="font-serif-display text-2xl md:text-[28px] font-bold text-[#2c3040] tracking-tight">Art Samples</h2>
+                  <div className="w-16 h-[3px] bg-black mt-2 mx-auto md:mx-0" />
+                </div>
+
+                <div>
+                  <h3 className="font-serif-display text-[16px] md:text-[17px] italic font-semibold text-slate-600 border-l-4 border-yellow-400 pl-4 mb-4">
+                    Normal Style
+                  </h3>
+                  <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
+                    {['sample1.jpg', 'sample2.jpg', 'sample3.jpg'].map((img, i) => (
+                      <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
+                        <Image
+                          src={`/samples/${img}`}
+                          alt={`Normal sample ${i + 1}`}
+                          width={1000}
+                          height={1000}
+                          className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    ))}
                   </div>
+                </div>
 
-                  <div>
-                    <h3 className="font-serif-display text-[16px] md:text-[17px] italic font-semibold text-slate-600 border-l-4 border-yellow-400 pl-4 mb-4">
-                      Normal Style
-                    </h3>
-                    <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
-                      {['sample1.jpg', 'sample2.jpg', 'sample3.jpg'].map((img, i) => (
-                        <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
-                          <Image
-                            src={`/samples/${img}`}
-                            alt={`Normal sample ${i + 1}`}
-                            width={1000}
-                            height={1000}
-                            className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="font-serif-display text-[16px] md:text-[17px] italic font-semibold text-slate-600 border-l-4 border-purple-400 pl-4 mb-4">
-                      Chibi Style
-                    </h3>
-                    <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
-                      {['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'].map((img, i) => (
-                        <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
-                          <Image
-                            src={`/samples/${img}`}
-                            alt={`Chibi sample ${i + 1}`}
-                            width={1000}
-                            height={1000}
-                            className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-                      ))}
-                    </div>
+                <div>
+                  <h3 className="font-serif-display text-[16px] md:text-[17px] italic font-semibold text-slate-600 border-l-4 border-purple-400 pl-4 mb-4">
+                    Chibi Style
+                  </h3>
+                  <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
+                    {['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'].map((img, i) => (
+                      <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
+                        <Image
+                          src={`/samples/${img}`}
+                          alt={`Chibi sample ${i + 1}`}
+                          width={1000}
+                          height={1000}
+                          className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             )}
 
-            {/* VIEW 2: CAPABILITY */}
+            {/* VIEW 3: CAPABILITY */}
             {activeView === 'capability' && (
               <div className="animate-view">
                 <table className="w-full border-collapse text-sm">
@@ -242,7 +246,7 @@ export default function Home() {
               </div>
             )}
 
-            {/* VIEW 3: TERMS OF SERVICE */}
+            {/* VIEW 4: TERMS OF SERVICE */}
             {activeView === 'terms' && (
               <div className="animate-view flex flex-col gap-6">
                 <h2 className="font-serif-display text-2xl md:text-[28px] font-bold text-[#2c3040] tracking-tight text-center md:text-left">Terms of Service</h2>
@@ -303,7 +307,7 @@ export default function Home() {
           </div>
 
           <p className="text-[9px] md:text-[10px] text-gray-300 font-mono uppercase tracking-[0.3em] text-center mt-2 md:mt-4">
-            Developed by <a href="https://instagram.com/vinfinfinfin" target="_blank" rel="noopener noreferrer">vin</a><br />
+            <a href="https://instagram.com/vinfinfinfin" target="_blank" rel="noopener noreferrer">vin</a><br />
             <span className="opacity-40">♡</span>
           </p>
         </section>
