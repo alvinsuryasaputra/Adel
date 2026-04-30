@@ -1,22 +1,71 @@
 'use client';
+
+// --- IMPORTS ---
 import { useState } from 'react';
 import Image from 'next/image';
-import { MessageCircle, Globe, X, ChevronRight, Star } from 'lucide-react';
+import { MessageCircle, Globe, X, Star } from 'lucide-react';
 
+// --- STATIC DATA ---
+const NAV_ITEMS = [
+  { id: 'pricelist', label: 'Pricelist' },
+  { id: 'samples', label: 'Samples' },
+  { id: 'capability', label: 'Capability' },
+  { id: 'terms', label: 'Terms of Service' },
+];
+
+const PRICELIST_DATA = [
+  { type: 'Chibi Icon', price: '50.000 / $15' },
+  { type: 'Portrait Skeb', price: '80.000 / $20' },
+  { type: 'Chibi Mini Splash', price: '85.000 / $25' },
+];
+
+const ADDITIONAL_CHARGES = [
+  { label: 'Props / Complex Design', charge: '+5k – 25k/ea' },
+  { label: 'Private Fee', charge: '+75%' },
+  { label: 'Additional Character', charge: '+100%/ea' },
+  { label: 'Commercial Use', charge: '+120%' },
+];
+
+const CAPABILITY_DATA = [
+  { can: 'Female Characters', cant: 'Extreme Muscle' },
+  { can: 'Original Characters (OC)', cant: 'Elderly / Old People' },
+  { can: 'Fanart', cant: 'Mecha / Robots' },
+  { can: 'Kemonomimi', cant: 'Full Furry' },
+  { can: 'Side Profiles', cant: 'Heavy NSFW' },
+  { can: 'Male (Ask first)', cant: 'Realism' },
+];
+
+const TERMS_DATA = [
+  "First come, first served.",
+  "TAT: 4 – 20 hari kerja per karya.",
+  "Update progres berkala via DM.",
+  "Mohon bersabar! Tidak menerima komisi mendadak/deadline.",
+  "DP 50% di awal, pelunasan setelah sketsa.",
+  "Revisi sketsa bebas, setelah sketsa hanya bisa revisi warna.",
+  "No Refund! kecuali jika saya tidak bisa melanjutkan karena kondisi tertentu."
+];
+
+const SAMPLES_NORMAL = ['sample1.jpg', 'sample2.jpg', 'sample3.jpg'];
+const SAMPLES_CHIBI = ['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'];
+
+const ORDER_LINKS = [
+  { href: "https://wa.me/6282134140287", icon: MessageCircle, label: "WhatsApp" },
+  { href: "https://vgen.co/uchuujin", icon: Globe, label: "VGen" },
+  { href: "https://x.com/uchvvjin", icon: X, label: "X" },
+];
+
+// --- MAIN COMPONENT ---
 export default function Home() {
   const [activeView, setActiveView] = useState('home');
 
   const toggleView = (view: string) => {
-    if (activeView === view) {
-      setActiveView('home'); 
-    } else {
-      setActiveView(view); 
-    }
+    setActiveView(activeView === view ? 'home' : view);
   };
 
   return (
     <main className="min-h-[100dvh] bg-[#f5f4f0] text-[#3d405b] font-sans flex justify-center py-8 px-4 md:py-12 md:px-6">
-
+      
+      {/* GLOBAL STYLES */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
 
@@ -25,15 +74,10 @@ export default function Home() {
         }
 
         @keyframes fadeInSlide {
-          from { 
-            opacity: 0; 
-            transform: translateX(15px); 
-          }
-          to { 
-            opacity: 1; 
-            transform: translateX(0); 
-          }
+          from { opacity: 0; transform: translateX(15px); }
+          to { opacity: 1; transform: translateX(0); }
         }
+        
         .animate-view {
           animation: fadeInSlide 0.4s ease-out forwards;
         }
@@ -43,9 +87,10 @@ export default function Home() {
 
       <div className="m-auto max-w-3xl w-full flex flex-col gap-8 md:gap-10">
 
-        {/* ── SECTION 1: HERO (SELALU MUNCUL) ── */}
+        {/* HEADER & PROFILE */}
         <section className="flex flex-row justify-between items-start gap-2 sm:gap-4 md:gap-8 w-full">
-
+          
+          {/* PROFILE INFO */}
           <div className="flex flex-row gap-2.5 sm:gap-4 md:gap-8 flex-1 min-w-0">
             <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 rounded-full overflow-hidden border-2 md:border-4 border-white shadow-sm md:shadow-md relative bg-[#e8e6e0]">
               <Image src="/avatar.png" alt="CIEL avatar" fill className="object-cover" priority />
@@ -59,7 +104,6 @@ export default function Home() {
                 <p className="text-[9px] sm:text-[10px] md:text-[13px] text-slate-400 tracking-wide mt-1 truncate">(@uchvvjin)</p>
               </div>
 
-              {/* ── LIST DENGAN BULLET POINTS ── */}
               <ul className="flex flex-col gap-1 md:gap-1.5">
                 <li className="flex items-center gap-2 md:gap-3 text-[9px] md:text-[13px] text-slate-500 font-medium truncate">
                   <span className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-slate-300 flex-shrink-0" /> ID / EN
@@ -72,29 +116,23 @@ export default function Home() {
                 </li>
               </ul>
 
-              {/* ── BUTTON PROJECT SEKAI ── */}
               <div className="flex pt-1 md:pt-1.5">
-                <a href="https://wa.me/6282134140287?text=Project%20Sekai!" target="_blank"
+                <a href="https://wa.me/6282134140287?text=Project%20Sekai!" target="_blank" rel="noopener noreferrer"
                   className="px-4 py-1.5 md:px-5 md:py-2 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-[#2c3040] hover:text-white transition-all shadow-sm text-[10px] md:text-[12px] font-bold text-slate-500 tracking-wide">
                   Project Sekai Reroll Account?
                 </a>
               </div>
-              
             </div>
           </div>
 
+          {/* NAVIGATION MENU */}
           <div className="w-[125px] sm:w-[140px] md:w-56 flex-shrink-0">
             <div className="border border-black bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:border-2 md:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] px-1.5 md:px-3 py-1 md:py-2 flex justify-between items-center mb-2 md:mb-3">
               <span className="text-[6.5px] sm:text-[7px] md:text-[9px] font-black uppercase tracking-tight md:tracking-[0.2em] text-black truncate">ART COMMISSION</span>
               <span className="text-[10px] md:text-sm font-bold border-l border-black pl-1 md:pl-2">≡</span>
             </div>
             <ul className="flex flex-col gap-0 text-[8px] sm:text-[9px] md:text-[12px] font-bold">
-              {[
-                { id: 'pricelist', label: 'Pricelist' },
-                { id: 'samples', label: 'Samples' },
-                { id: 'capability', label: 'Capability' },
-                { id: 'terms', label: 'Terms of Service' },
-              ].map((item) => (
+              {NAV_ITEMS.map((item) => (
                 <li key={item.id} className="border-b border-gray-200 pb-1.5 md:pb-2 mb-1.5 md:mb-2">
                   <button 
                     onClick={() => toggleView(item.id)}
@@ -113,11 +151,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── AREA KONTEN DINAMIS ── */}
+        {/* DYNAMIC CONTENT VIEWS */}
         {activeView !== 'home' && (
           <div className="animate-view flex flex-col gap-8 md:gap-12 pt-4 md:pt-6 border-t-2 border-dashed border-gray-200">
             
-            {/* VIEW 1: PRICELIST */}
+            {/* PRICELIST VIEW */}
             {activeView === 'pricelist' && (
               <div className="flex flex-col gap-10 md:gap-14">
                 <div className="flex flex-col gap-8">
@@ -129,11 +167,7 @@ export default function Home() {
                       </tr>
                     </thead>
                     <tbody>
-                      {[
-                        { type: 'Chibi Icon', price: '50.000 / $15' },
-                        { type: 'Portrait Skeb', price: '80.000 / $20' },
-                        { type: 'Chibi Mini Splash', price: '85.000 / $25' },
-                      ].map((row) => (
+                      {PRICELIST_DATA.map((row) => (
                         <tr key={row.type} className="border-b border-gray-200">
                           <td className="py-4 md:py-5 italic text-center text-[13px] md:text-[15px] text-slate-500">{row.type}</td>
                           <td className="py-4 md:py-5 font-bold text-center text-[13px] md:text-[15px] text-black font-mono">{row.price}</td>
@@ -152,12 +186,7 @@ export default function Home() {
                       </tr>
                     </thead>
                     <tbody>
-                      {[
-                        { label: 'Props / Complex Design', charge: '+5k – 25k/ea' },
-                        { label: 'Private Fee', charge: '+75%' },
-                        { label: 'Additional Character', charge: '+100%/ea' },
-                        { label: 'Commercial Use', charge: '+120%' },
-                      ].map((row) => (
+                      {ADDITIONAL_CHARGES.map((row) => (
                         <tr key={row.label} className="border-b border-gray-200 text-center">
                           <td className="py-3 md:py-4 italic text-slate-500 text-[13px] md:text-[14px]">{row.label}</td>
                           <td className="py-3 md:py-4 font-bold text-black text-[13px] md:text-[14px]">{row.charge}</td>
@@ -169,7 +198,7 @@ export default function Home() {
               </div>
             )}
 
-            {/* VIEW 2: SAMPLES */}
+            {/* SAMPLES VIEW */}
             {activeView === 'samples' && (
               <div className="flex flex-col gap-8">
                 <div className="text-center md:text-left">
@@ -182,7 +211,7 @@ export default function Home() {
                     Normal Style
                   </h3>
                   <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
-                    {['sample1.jpg', 'sample2.jpg', 'sample3.jpg'].map((img, i) => (
+                    {SAMPLES_NORMAL.map((img, i) => (
                       <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
                         <Image
                           src={`/samples/${img}`}
@@ -201,7 +230,7 @@ export default function Home() {
                     Chibi Style
                   </h3>
                   <div className="columns-2 md:columns-4 gap-3.5 space-y-3.5">
-                    {['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'].map((img, i) => (
+                    {SAMPLES_CHIBI.map((img, i) => (
                       <div key={i} className="group break-inside-avoid mb-3.5 rounded-xl overflow-hidden border-2 border-white shadow-sm hover:shadow-md transition-all">
                         <Image
                           src={`/samples/${img}`}
@@ -217,7 +246,7 @@ export default function Home() {
               </div>
             )}
 
-            {/* VIEW 3: CAPABILITY */}
+            {/* CAPABILITY VIEW */}
             {activeView === 'capability' && (
               <div className="animate-view">
                 <table className="w-full border-collapse text-sm">
@@ -228,17 +257,10 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody>
-                    {[
-                      ['Female Characters', 'Extreme Muscle'],
-                      ['Original Characters (OC)', 'Elderly / Old People'],
-                      ['Fanart', 'Mecha / Robots'],
-                      ['Kemonomimi', 'Full Furry'],
-                      ['Side Profiles', 'Heavy NSFW'],
-                      ['Male (Ask first)', 'Realism'],
-                    ].map(([can, cant], i) => (
+                    {CAPABILITY_DATA.map((item, i) => (
                       <tr key={i} className="border-b border-gray-200">
-                        <td className="py-3 md:py-4 italic text-center text-[13px] md:text-[15px] text-slate-500">{can}</td>
-                        <td className="py-3 md:py-4 italic text-center text-[13px] md:text-[15px] text-slate-500">{cant}</td>
+                        <td className="py-3 md:py-4 italic text-center text-[13px] md:text-[15px] text-slate-500">{item.can}</td>
+                        <td className="py-3 md:py-4 italic text-center text-[13px] md:text-[15px] text-slate-500">{item.cant}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -246,19 +268,15 @@ export default function Home() {
               </div>
             )}
 
-            {/* VIEW 4: TERMS OF SERVICE */}
+            {/* TERMS OF SERVICE VIEW */}
             {activeView === 'terms' && (
               <div className="animate-view flex flex-col gap-6">
                 <h2 className="font-serif-display text-2xl md:text-[28px] font-bold text-[#2c3040] tracking-tight text-center md:text-left">Terms of Service</h2>
                 <div className="bg-white p-6 md:p-8 border border-gray-200 rounded-2xl shadow-sm">
                   <ul className="flex flex-col gap-4 md:gap-5 text-[13px] md:text-[14px] text-slate-500 leading-relaxed">
-                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">01.</span> First come, first served.</li>
-                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">02.</span> TAT: 4 – 20 hari kerja per karya.</li>
-                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">03.</span> Update progres berkala via DM.</li>
-                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">04.</span> Mohon bersabar! Tidak menerima komisi mendadak/deadline.</li>
-                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">05.</span> DP 50% di awal, pelunasan setelah sketsa.</li>
-                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">06.</span> Revisi sketsa bebas, setelah sketsa hanya bisa revisi warna.</li>
-                    <li className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">07.</span> No Refund! kecuali jika saya tidak bisa melanjutkan karena kondisi tertentu.</li>
+                    {TERMS_DATA.map((term, index) => (
+                       <li key={index} className="flex gap-3 md:gap-4"><span className="font-bold text-black shrink-0">0{index + 1}.</span> {term}</li>
+                    ))}
                     <li>
                       <p className="font-bold text-red-700 bg-red-50 border-2 border-red-100 rounded-xl px-4 md:px-5 py-3 md:py-4 italic text-[12px] md:text-[13px] leading-relaxed">
                         DILARANG KERAS menggunakan hasil karya untuk keperluan AI (Artificial Intelligence) dan/atau NFT.
@@ -272,6 +290,7 @@ export default function Home() {
               </div>
             )}
 
+            {/* CLOSE BUTTON */}
             <button 
               onClick={() => setActiveView('home')}
               className="mt-4 mx-auto md:mx-0 w-fit text-[11px] md:text-sm font-bold text-slate-400 hover:text-black uppercase tracking-widest border-b border-transparent hover:border-black transition-all"
@@ -281,7 +300,7 @@ export default function Home() {
           </div>
         )}
 
-        {/* ── FOOTER / TOMBOL ORDER (SELALU MUNCUL DI BAWAH) ── */}
+        {/* FOOTER & CTA */}
         <section className={`flex flex-col items-center gap-6 md:gap-8 transition-all duration-500 ${activeView === 'home' ? 'pt-2' : 'pt-8 border-t-2 border-gray-200'}`}>
           
           {activeView !== 'home' && (
@@ -291,21 +310,20 @@ export default function Home() {
             </div>
           )}
 
+          {/* SOCIAL LINKS */}
           <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full max-w-2xl">
-            <a href="https://wa.me/6282134140287" target="_blank"
-              className="flex-1 flex items-center justify-center gap-3 bg-[#2c3040] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#1a1d26] md:shadow-[0_6px_0_0_#1a1d26] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
-              <MessageCircle size={18} className="md:w-[22px] md:h-[22px]" /> WhatsApp
-            </a>
-            <a href="https://vgen.co/uchuujin" target="_blank"
-              className="flex-1 flex items-center justify-center gap-3 bg-[#2c3040] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#1a1d26] md:shadow-[0_6px_0_0_#1a1d26] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
-              <Globe size={18} className="md:w-[22px] md:h-[22px]" /> VGen
-            </a>
-            <a href="https://x.com/uchvvjin" target="_blank"
-              className="flex-1 flex items-center justify-center gap-3 bg-[#2c3040] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#1a1d26] md:shadow-[0_6px_0_0_#1a1d26] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
-              <X size={18} className="md:w-[22px] md:h-[22px]" /> X
-            </a>
+            {ORDER_LINKS.map((link, index) => {
+              const IconComponent = link.icon;
+              return (
+                <a key={index} href={link.href} target="_blank" rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-3 bg-[#2c3040] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#1a1d26] md:shadow-[0_6px_0_0_#1a1d26] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
+                  <IconComponent size={18} className="md:w-[22px] md:h-[22px]" /> {link.label}
+                </a>
+              );
+            })}
           </div>
 
+          {/* CREDIT */}
           <p className="text-[9px] md:text-[10px] text-gray-300 font-mono uppercase tracking-[0.3em] text-center mt-2 md:mt-4">
             <a href="https://instagram.com/vinfinfinfin" target="_blank" rel="noopener noreferrer">vin</a><br />
             <span className="opacity-40">♡</span>
