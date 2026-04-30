@@ -316,8 +316,14 @@ export default function Home() {
               const IconComponent = link.icon;
               return (
                 <a key={index} href={link.href} target="_blank" rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-3 bg-[#2c3040] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#1a1d26] md:shadow-[0_6px_0_0_#1a1d26] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
-                  <IconComponent size={18} className="md:w-[22px] md:h-[22px]" /> {link.label}
+                  className="flex-1 flex items-center justify-center bg-[#2c3040] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#1a1d26] md:shadow-[0_6px_0_0_#1a1d26] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
+                  
+                  {/* WRAPPER BARU: Menjaga logo & teks sejajar rapi di tengah button */}
+                  <div className="flex items-center gap-3 w-[105px] md:w-auto justify-start md:justify-center">
+                    <IconComponent size={18} className="shrink-0 md:w-[22px] md:h-[22px]" /> 
+                    <span>{link.label}</span>
+                  </div>
+
                 </a>
               );
             })}
