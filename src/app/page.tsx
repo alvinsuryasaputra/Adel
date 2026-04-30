@@ -3,7 +3,7 @@
 // --- IMPORTS ---
 import { useState } from 'react';
 import Image from 'next/image';
-import { MessageCircle, Globe, X, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 // --- STATIC DATA ---
 const NAV_ITEMS = [
@@ -48,10 +48,11 @@ const TERMS_DATA = [
 const SAMPLES_NORMAL = ['sample1.jpg', 'sample2.jpg', 'sample3.jpg'];
 const SAMPLES_CHIBI = ['samplec1.jpg', 'samplec2.jpg', 'samplec3.jpg', 'samplec4.jpg'];
 
+// Data dikembalikan menjadi tulisan (label) saja
 const ORDER_LINKS = [
-  { href: "https://wa.me/6282134140287", icon: MessageCircle, label: "WhatsApp" },
-  { href: "https://vgen.co/uchuujin", icon: Globe, label: "VGen" },
-  { href: "https://x.com/uchvvjin", icon: X, label: "X" },
+  { href: "https://wa.me/6282134140287", label: "WhatsApp" },
+  { href: "https://vgen.co/uchuujin", label: "VGen" },
+  { href: "https://x.com/uchvvjin", label: "X" },
 ];
 
 // --- MAIN COMPONENT ---
@@ -310,23 +311,14 @@ export default function Home() {
             </div>
           )}
 
-          {/* SOCIAL LINKS */}
+          {/* SOCIAL LINKS - Text Only */}
           <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full max-w-2xl">
-            {ORDER_LINKS.map((link, index) => {
-              const IconComponent = link.icon;
-              return (
-                <a key={index} href={link.href} target="_blank" rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center bg-[#2c3040] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] shadow-[0_4px_0_0_#1a1d26] md:shadow-[0_6px_0_0_#1a1d26] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
-                  
-                  {/* WRAPPER BARU: Menjaga logo & teks sejajar rapi di tengah button */}
-                  <div className="flex items-center gap-3 w-[105px] md:w-auto justify-start md:justify-center">
-                    <IconComponent size={18} className="shrink-0 md:w-[22px] md:h-[22px]" /> 
-                    <span>{link.label}</span>
-                  </div>
-
-                </a>
-              );
-            })}
+            {ORDER_LINKS.map((link, index) => (
+              <a key={index} href={link.href} target="_blank" rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center bg-[#2c3040] text-white px-4 md:px-6 py-3.5 md:py-5 rounded-2xl font-black text-[13px] md:text-[15px] tracking-wide shadow-[0_4px_0_0_#1a1d26] md:shadow-[0_6px_0_0_#1a1d26] hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all">
+                {link.label}
+              </a>
+            ))}
           </div>
 
           {/* CREDIT */}
