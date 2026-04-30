@@ -119,7 +119,7 @@ export default function Home() {
               <div className="flex pt-1 md:pt-1.5">
                 <a href="https://wa.me/6282134140287?text=Project%20Sekai!" target="_blank" rel="noopener noreferrer"
                   className="px-4 py-1.5 md:px-5 md:py-2 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-[#2c3040] hover:text-white transition-all shadow-sm text-[10px] md:text-[12px] font-bold text-slate-500 tracking-wide">
-                  Project Sekai Reroll Account?
+                  Project Sekai Account?
                 </a>
               </div>
             </div>
